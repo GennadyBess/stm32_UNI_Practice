@@ -1,0 +1,303 @@
+\doxysection{D:\+/\+\+MAI/\+stm32cubemx/\+projects/\+rwestw/\+\+Core/\+\+Src/\+main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/main.c@{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/main.c}}
+
+
+:\+ Main program body  
+
+
+{\ttfamily \+\#include "{}main.\+h"{}}\newline
+{\ttfamily \+\#include "{}usb\+\_\+device.\+h"{}}\newline
+{\ttfamily \+\#include "{}cli.\+h"{}}\newline
+{\ttfamily \+\#include "{}utils.\+h"{}}\newline
+{\ttfamily \+\#include "{}mcp41010.\+h"{}}\newline
+{\ttfamily \+\#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \+\#include "{}ee.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_a71b23f65ec3b2c1b039f71ab3ac56cdb}{Read\+\_\+\+ADC}} (\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} \texorpdfstring{$\ast$}{*}result, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hadc, uint8\+\_\+t samples, float multiplier, float divider)
+\begin{DoxyCompactList}\small\item\em Чтение, усреднение, и калибровка данных с АЦП. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_add9f31502f655b336c1111964b36fd07}{status\+\_\+print}} ()
+\begin{DoxyCompactList}\small\item\em Форматирование и отправка текущего системного времени и параметров. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_ab1956c72007164748ed43ab6c2dd3878}\label{main_8c_ab1956c72007164748ed43ab6c2dd3878} 
+void {\bfseries voltage\+\_\+regulation} ()
+\item 
+void \doxymbox{\hyperlink{main_8c_a308828d696b125ce1b4c15fb7f183635}{voltage\+\_\+regulation\+\_\+pi}} (int16\+\_\+t p\+\_\+feedforward, float t\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Выполнение одного шага PI-\/регулирования напряжения. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_add8f3ece32c1bc6ecacc02d602701a01}{current\+\_\+regulation\+\_\+pi}} (float v\+\_\+feedforward, float t\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Выполнение одного шага PI-\/регулирования тока. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}htim)
+\begin{DoxyCompactList}\small\item\em Обработчик прерывания по переполнению таймера TIM3. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{main_8c_a0969ecf93671fbcc00db642b61c5951b}{Set\+\_\+\+Target\+\_\+\+Voltage}} (float trg\+\_\+voltage)
+\begin{DoxyCompactList}\small\item\em Установка целевого напряжения. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{main_8c_aec21703c349e83c1e95ceb69da60bcef}{Set\+\_\+\+Target\+\_\+\+Current}} (float trg\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Установка целевого значения тока. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_a22b804736f5648d52f639b2647d4ed13}\label{main_8c_a22b804736f5648d52f639b2647d4ed13} 
+ADC\+\_\+\+Handle\+Type\+Def {\bfseries hadc1}
+\item 
+\Hypertarget{main_8c_acd9221f1aa19aebfe0b744947f2daf49}\label{main_8c_acd9221f1aa19aebfe0b744947f2daf49} 
+ADC\+\_\+\+Handle\+Type\+Def {\bfseries hadc2}
+\item 
+\Hypertarget{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\label{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62} 
+TIM\+\_\+\+Handle\+Type\+Def {\bfseries htim3}
+\item 
+\Hypertarget{main_8c_ad7fb459b90b39993f29af03acaf5084e}\label{main_8c_ad7fb459b90b39993f29af03acaf5084e} 
+volatile uint8\+\_\+t {\bfseries voltage\+\_\+regulation\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_abe67a41f105476714617d029557e00e2}\label{main_8c_abe67a41f105476714617d029557e00e2} 
+volatile uint8\+\_\+t {\bfseries current\+\_\+regulation\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_a7344c86d030ec394d33dc17b587e6e05}\label{main_8c_a7344c86d030ec394d33dc17b587e6e05} 
+volatile uint8\+\_\+t {\bfseries debug\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_a959dd4bde8cd29b5021aef26dc3b7042}\label{main_8c_a959dd4bde8cd29b5021aef26dc3b7042} 
+volatile uint8\+\_\+t {\bfseries status\+\_\+output\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_a8db5d98a6779ec555230321de7600103}\label{main_8c_a8db5d98a6779ec555230321de7600103} 
+volatile uint8\+\_\+t {\bfseries get\+\_\+status\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_ab04d16e4e4071df7cf3d3dbc9d1abeba}\label{main_8c_ab04d16e4e4071df7cf3d3dbc9d1abeba} 
+volatile uint8\+\_\+t {\bfseries measure\+\_\+enabled} = 0
+\item 
+\Hypertarget{main_8c_ad377c8e7aa8ca69bd0087500f0f25b0f}\label{main_8c_ad377c8e7aa8ca69bd0087500f0f25b0f} 
+volatile float {\bfseries target\+\_\+voltage} = 12.\+5
+\item 
+\Hypertarget{main_8c_ac75cbf3f674719dfa6c1801176929590}\label{main_8c_ac75cbf3f674719dfa6c1801176929590} 
+volatile float {\bfseries target\+\_\+current} = 1.\+0f
+\item 
+\Hypertarget{main_8c_a1234ea89f0fdb04f577bc74f56a775d1}\label{main_8c_a1234ea89f0fdb04f577bc74f56a775d1} 
+volatile uint16\+\_\+t {\bfseries system\+\_\+ms\+\_\+ticks} = 0
+\item 
+\Hypertarget{main_8c_acb7b5be6e504988f60184ca14b4af146}\label{main_8c_acb7b5be6e504988f60184ca14b4af146} 
+volatile uint16\+\_\+t {\bfseries debug\+\_\+interval} = 1000
+\item 
+\Hypertarget{main_8c_ac0395c1f98b52df3f9f1fcd54ead3dd0}\label{main_8c_ac0395c1f98b52df3f9f1fcd54ead3dd0} 
+float {\bfseries k\+\_\+voltage} = 1
+\item 
+\Hypertarget{main_8c_ad6e20f9661f49cb6957ffcf125491db7}\label{main_8c_ad6e20f9661f49cb6957ffcf125491db7} 
+float {\bfseries b\+\_\+voltage} = 0
+\item 
+\Hypertarget{main_8c_a67cac0e249ff3f215164f5e6c6f1dd73}\label{main_8c_a67cac0e249ff3f215164f5e6c6f1dd73} 
+float {\bfseries k\+\_\+current} = 1
+\item 
+\Hypertarget{main_8c_a65cbdf262b4461216912123f22560cb4}\label{main_8c_a65cbdf262b4461216912123f22560cb4} 
+float {\bfseries b\+\_\+current} = 0
+\item 
+\Hypertarget{main_8c_a4c7b72ddf7ba6b0ac81f3951433099fc}\label{main_8c_a4c7b72ddf7ba6b0ac81f3951433099fc} 
+\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} {\bfseries voltage} = \{ .type = 0\}
+\item 
+\Hypertarget{main_8c_aeab08c0a4d93e86c3d2a6b02510baccc}\label{main_8c_aeab08c0a4d93e86c3d2a6b02510baccc} 
+\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} {\bfseries current} = \{ .type = 1\}
+\item 
+\Hypertarget{main_8c_a4f8234c8ffd6b6ab4cf8ce442e43637e}\label{main_8c_a4f8234c8ffd6b6ab4cf8ce442e43637e} 
+\doxymbox{\hyperlink{structcalibration__settings__t}{calibration\+\_\+settings\+\_\+t}} {\bfseries settings}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+:\+ Main program body 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2026 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\label{main_8c_doc-func-members}
+\Hypertarget{main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_add8f3ece32c1bc6ecacc02d602701a01}\index{main.c@{main.c}!current\_regulation\_pi@{current\_regulation\_pi}}
+\index{current\_regulation\_pi@{current\_regulation\_pi}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{current\_regulation\_pi()}{current\_regulation\_pi()}}
+{\footnotesize\ttfamily \label{main_8c_add8f3ece32c1bc6ecacc02d602701a01} 
+void current\+\_\+regulation\+\_\+pi (\begin{DoxyParamCaption}\item[{float}]{v\+\_\+feedforward}{, }\item[{float}]{t\+\_\+target}{}\end{DoxyParamCaption})}
+
+
+
+Выполнение одного шага PI-\/регулирования тока. 
+
+Рассчитывает необходимую коррекцию напряжения на основе ошибки по току, объединяет её с расчетным напряжением модели (Feedforward) и устанавливает новое целевое напряжение для аппаратного регулятора.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em v\+\_\+feedforward} & Расчетное напряжение модели (V\+\_\+out2). Если \texorpdfstring{$<$}{<} 0, берется старое значение. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em t\+\_\+target} & Целевой ток (А). Если \texorpdfstring{$<$}{<} 0, используется текущий целевой ток. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{main_8c_a1730ffe1e560465665eb47d9264826f9}\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily \label{main_8c_a1730ffe1e560465665eb47d9264826f9} 
+void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\index{main.c@{main.c}!HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}}
+\index{HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_PeriodElapsedCallback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily \label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac} 
+void HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{htim}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик прерывания по переполнению таймера TIM3. 
+
+Вызывается аппаратно с базовым интервалом в 1 мс. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em htim} & Указатель на базовую структуру таймера HAL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8c_a71b23f65ec3b2c1b039f71ab3ac56cdb}\index{main.c@{main.c}!Read\_ADC@{Read\_ADC}}
+\index{Read\_ADC@{Read\_ADC}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Read\_ADC()}{Read\_ADC()}}
+{\footnotesize\ttfamily \label{main_8c_a71b23f65ec3b2c1b039f71ab3ac56cdb} 
+void Read\+\_\+\+ADC (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hadc}{, }\item[{uint8\+\_\+t}]{samples}{, }\item[{float}]{multiplier}{, }\item[{float}]{divider}{}\end{DoxyParamCaption})}
+
+
+
+Чтение, усреднение, и калибровка данных с АЦП. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em result} & Указатель на структуру \doxylink{struct_measurement__t}{Measurement\+\_\+t} для записи отформатированного результата. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em hadc} & Указатель на дескриптор используемого АЦП HAL. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em samples} & Количество выборок для усреднения (размер окна оверсемплинга). \\
+\hline
+\doxymbox{\texttt{in}}  & {\em multiplier} & Множитель входного аппаратного делителя/\+усилителя. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em divider} & Делитель входного аппаратного делителя/\+усилителя. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_aec21703c349e83c1e95ceb69da60bcef}\index{main.c@{main.c}!Set\_Target\_Current@{Set\_Target\_Current}}
+\index{Set\_Target\_Current@{Set\_Target\_Current}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Set\_Target\_Current()}{Set\_Target\_Current()}}
+{\footnotesize\ttfamily \label{main_8c_aec21703c349e83c1e95ceb69da60bcef} 
+uint8\+\_\+t Set\+\_\+\+Target\+\_\+\+Current (\begin{DoxyParamCaption}\item[{float}]{trg\+\_\+current}{}\end{DoxyParamCaption})}
+
+
+
+Установка целевого значения тока. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em target\+\_\+current} & Желаемый выходной ток в Амперах. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & Расчет успешен. \\
+\hline
+{\em 0} & Ошибка расчета. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8c_a0969ecf93671fbcc00db642b61c5951b}\index{main.c@{main.c}!Set\_Target\_Voltage@{Set\_Target\_Voltage}}
+\index{Set\_Target\_Voltage@{Set\_Target\_Voltage}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Set\_Target\_Voltage()}{Set\_Target\_Voltage()}}
+{\footnotesize\ttfamily \label{main_8c_a0969ecf93671fbcc00db642b61c5951b} 
+uint8\+\_\+t Set\+\_\+\+Target\+\_\+\+Voltage (\begin{DoxyParamCaption}\item[{float}]{trg\+\_\+voltage}{}\end{DoxyParamCaption})}
+
+
+
+Установка целевого напряжения. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em target\+\_\+voltage} & Желаемое выходное напряжение в Вольтах. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & Целевое напряжение валидно и установлено. \\
+\hline
+{\em 0} & Заданное значение выходит за аппаратные границы схемы регулирования. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8c_add9f31502f655b336c1111964b36fd07}\index{main.c@{main.c}!status\_print@{status\_print}}
+\index{status\_print@{status\_print}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{status\_print()}{status\_print()}}
+{\footnotesize\ttfamily \label{main_8c_add9f31502f655b336c1111964b36fd07} 
+void status\+\_\+print (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Форматирование и отправка текущего системного времени и параметров. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily \label{main_8c_a70af21c671abfcc773614a9a4f63d920} 
+void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Initializes the RCC Oscillators according to the specified parameters in the RCC\+\_\+\+Osc\+Init\+Type\+Def structure.
+
+Initializes the CPU, AHB and APB buses clocks\Hypertarget{main_8c_a308828d696b125ce1b4c15fb7f183635}\index{main.c@{main.c}!voltage\_regulation\_pi@{voltage\_regulation\_pi}}
+\index{voltage\_regulation\_pi@{voltage\_regulation\_pi}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{voltage\_regulation\_pi()}{voltage\_regulation\_pi()}}
+{\footnotesize\ttfamily \label{main_8c_a308828d696b125ce1b4c15fb7f183635} 
+void voltage\+\_\+regulation\+\_\+pi (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{p\+\_\+feedforward}{, }\item[{float}]{t\+\_\+target}{}\end{DoxyParamCaption})}
+
+
+
+Выполнение одного шага PI-\/регулирования напряжения. 
+
+Функция опрашивается в главном цикле по флагу готовности измерений (каждые 50 мс). Реализует формулу Feedforward + PI с защитой интегратора от насыщения (Anti-\/windup clamping).
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em p\+\_\+feedforward} & Расчетное стартовое положение потенциометра (feedforward от модели). Если передано \texorpdfstring{$<$}{<} 0, используется текущее базовое значение. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em t\+\_\+target} & Целевое напряжение. Если \texorpdfstring{$<$}{<} 0, используется текущее целевое. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}

@@ -1,0 +1,207 @@
+\doxysection{D:\+/\+\+MAI/\+stm32cubemx/\+projects/\+rwestw/\+\+Core/\+\+Src/\+cli.c File Reference}
+\hypertarget{cli_8c}{}\label{cli_8c}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/cli.c@{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/cli.c}}
+
+
+Обработка консольных команд пользователя  
+
+
+{\ttfamily \+\#include "{}main.\+h"{}}\newline
+{\ttfamily \+\#include "{}cli.\+h"{}}\newline
+{\ttfamily \+\#include "{}utils.\+h"{}}\newline
+{\ttfamily \+\#include "{}mcp41010.\+h"{}}\newline
+{\ttfamily \+\#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \+\#include "{}ee.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structcal__point__t}{cal\+\_\+point\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{cli_8c_a7599daea2ec855543c314777fe5ec162}\label{cli_8c_a7599daea2ec855543c314777fe5ec162} 
+\+\#define {\bfseries CAL\+\_\+\+TABLE\+\_\+\+SIZE}~10
+\item 
+\Hypertarget{cli_8c_a29ebdd0ea51f66291f8602228c655d17}\label{cli_8c_a29ebdd0ea51f66291f8602228c655d17} 
+\+\#define {\bfseries CMD\+\_\+\+COUNT}~(sizeof(cmd\+\_\+table) /\+ sizeof(\doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}}))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{cli_8c_a78ca14048722c671e7f900c17ebf741f}{do\+\_\+debug}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}debug"{}. Управление периодической отправкой данных телеметрии. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_a60c584db73dfb639c17bb525ed76577a}{do\+\_\+get}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}get"{}. Запрос на однократную отправку состояния. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_ad4118ed092662e0e90456916f594d770}{do\+\_\+stop}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}stop"{}. Остановка автоматического регулирования. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909}{do\+\_\+led}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}led"{}. Прямое управление отладочным светодиодом. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}{do\+\_\+set}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}set"{}. Ручная установка значения цифрового потенциометра/\+напряжения/\+тока. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_a969cc88f8457c08853eb84740f3e093b}{do\+\_\+print\+\_\+coefficients}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}coeff"{}. Вывод текущих калибровочных коэффициентов. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}{do\+\_\+calibration}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}cal"{}. Комплексное управление процессом калибровки. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_a1476c7cf5dfb919bf662855c364e540a}{process\+\_\+command}} (char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Функция парсинга и распределения входящих строк команд. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}} \doxymbox{\hyperlink{cli_8c_a5cff8331b93c949c99cf5d546b95de46}{cmd\+\_\+table}} \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Обработка консольных команд пользователя 
+
+
+
+\label{cli_8c_doc-func-members}
+\Hypertarget{cli_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}\index{cli.c@{cli.c}!do\_calibration@{do\_calibration}}
+\index{do\_calibration@{do\_calibration}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_calibration()}{do\_calibration()}}
+{\footnotesize\ttfamily \label{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a} 
+void do\+\_\+calibration (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}cal"{}. Комплексное управление процессом калибровки. 
+
+Поддерживает три режима:\+ добавление точки (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} 
+
+), расчет и сброс коэффициентов (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} start), (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} reset). 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. Первым токеном идет "{}v"{} или "{}c"{}, вторым — "{}start"{}, "{}reset"{} или число. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_a78ca14048722c671e7f900c17ebf741f}\index{cli.c@{cli.c}!do\_debug@{do\_debug}}
+\index{do\_debug@{do\_debug}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_debug()}{do\_debug()}}
+{\footnotesize\ttfamily \label{cli_8c_a78ca14048722c671e7f900c17ebf741f} 
+void do\+\_\+debug (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}debug"{}. Управление периодической отправкой данных телеметрии. 
+
+Включает/\+выключает флаг отладки или задает интервал отправки в мс. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка аргументов. "{}off"{} для отключения; число для установки интервала; пустая строка устанавливает интервал по умолчанию (1000 мс). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_a60c584db73dfb639c17bb525ed76577a}\index{cli.c@{cli.c}!do\_get@{do\_get}}
+\index{do\_get@{do\_get}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_get()}{do\_get()}}
+{\footnotesize\ttfamily \label{cli_8c_a60c584db73dfb639c17bb525ed76577a} 
+void do\+\_\+get (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}get"{}. Запрос на однократную отправку состояния. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909}\index{cli.c@{cli.c}!do\_led@{do\_led}}
+\index{do\_led@{do\_led}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_led()}{do\_led()}}
+{\footnotesize\ttfamily \label{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909} 
+void do\+\_\+led (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}led"{}. Прямое управление отладочным светодиодом. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка "{}on"{} для включения светодиода, "{}off"{} — для выключения. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_a969cc88f8457c08853eb84740f3e093b}\index{cli.c@{cli.c}!do\_print\_coefficients@{do\_print\_coefficients}}
+\index{do\_print\_coefficients@{do\_print\_coefficients}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_print\_coefficients()}{do\_print\_coefficients()}}
+{\footnotesize\ttfamily \label{cli_8c_a969cc88f8457c08853eb84740f3e093b} 
+void do\+\_\+print\+\_\+coefficients (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}coeff"{}. Вывод текущих калибровочных коэффициентов. 
+
+Форматирует коэффициенты и выводит их . 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка выбора канала:\+ "{}v"{} — напряжение, "{}c"{} — ток. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}\index{cli.c@{cli.c}!do\_set@{do\_set}}
+\index{do\_set@{do\_set}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_set()}{do\_set()}}
+{\footnotesize\ttfamily \label{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8} 
+void do\+\_\+set (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}set"{}. Ручная установка значения цифрового потенциометра/\+напряжения/\+тока. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. Первым токеном идет "{}r"{}, "{}v"{}, "{}c"{}, вторым — число. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_ad4118ed092662e0e90456916f594d770}\index{cli.c@{cli.c}!do\_stop@{do\_stop}}
+\index{do\_stop@{do\_stop}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_stop()}{do\_stop()}}
+{\footnotesize\ttfamily \label{cli_8c_ad4118ed092662e0e90456916f594d770} 
+void do\+\_\+stop (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}stop"{}. Остановка автоматического регулирования. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cli_8c_a1476c7cf5dfb919bf662855c364e540a}\index{cli.c@{cli.c}!process\_command@{process\_command}}
+\index{process\_command@{process\_command}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{process\_command()}{process\_command()}}
+{\footnotesize\ttfamily \label{cli_8c_a1476c7cf5dfb919bf662855c364e540a} 
+void process\+\_\+command (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{cmd}{}\end{DoxyParamCaption})}
+
+
+
+Функция парсинга и распределения входящих строк команд. 
+
+Очищает строку от символов переноса и лишних пробелов, выделяет первый токен как имя команды, ищет совпадение в cmd\+\_\+table и вызывает соответствующий обработчик. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em cmd} & Указатель на строку. \\
+\hline
+\end{DoxyParams}
+
+
+\label{cli_8c_doc-var-members}
+\Hypertarget{cli_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{cli_8c_a5cff8331b93c949c99cf5d546b95de46}\index{cli.c@{cli.c}!cmd\_table@{cmd\_table}}
+\index{cmd\_table@{cmd\_table}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_table}{cmd\_table}}
+{\footnotesize\ttfamily \label{cli_8c_a5cff8331b93c949c99cf5d546b95de46} 
+const \doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}} cmd\+\_\+table\+[$\,$]\+}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}debug"{}},\ \doxymbox{\hyperlink{cli_8c_a78ca14048722c671e7f900c17ebf741f}{do\_debug}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}get"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_a60c584db73dfb639c17bb525ed76577a}{do\_get}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}stop"{}},\ \ \doxymbox{\hyperlink{cli_8c_ad4118ed092662e0e90456916f594d770}{do\_stop}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}led"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909}{do\_led}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}set"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}{do\_set}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}coeff"{}},\ \doxymbox{\hyperlink{cli_8c_a969cc88f8457c08853eb84740f3e093b}{do\_print\_coefficients}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}cal"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}{do\_calibration}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

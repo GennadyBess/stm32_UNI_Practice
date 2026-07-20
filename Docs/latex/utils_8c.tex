@@ -1,0 +1,207 @@
+\doxysection{D:\+/\+\+MAI/\+stm32cubemx/\+projects/\+rwestw/\+\+Core/\+\+Src/\+utils.c File Reference}
+\hypertarget{utils_8c}{}\label{utils_8c}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/utils.c@{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/utils.c}}
+
+
+Вспомогательные функции  
+
+
+{\ttfamily \+\#include "{}utils.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{utils_8c_ab6c6cb21872638cf854ff67bb990999f}{custom\+\_\+atoi}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Конвертирует строку ASCII в неотрицательное целое число (от 0 до 65\+\_\+535). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{utils_8c_a826eff87694430a73e0b3143cfb13c03}{custom\+\_\+atof}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Конвертирует строку ASCII в неотрицательное число с плавающей точкой. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{utils_8c_a98bd779a33f0ddf654b2afc66c117b64}{custom\+\_\+utoa}} (uint32\+\_\+t value, char \texorpdfstring{$\ast$}{*}buf, int digits, char pad\+\_\+char)
+\begin{DoxyCompactList}\small\item\em Конвертирует беззнаковое 32-\/битное число в строку ASCII с форматированием. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{utils_8c_afb9b20d8d18a8a91f75288ac429b2e83}{append\+\_\+sensor\+\_\+data}} (char \texorpdfstring{$\ast$}{*}buf, int p, const char \texorpdfstring{$\ast$}{*}label, uint8\+\_\+t is\+\_\+neg, uint32\+\_\+t main\+\_\+part, uint32\+\_\+t sub\+\_\+part, char unit)
+\begin{DoxyCompactList}\small\item\em Форматирует и добавляет показания датчика в текстовый буфер. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{utils_8c_acb650ec9270f481120df27053f613adf}{append\+\_\+float\+\_\+coef}} (char \texorpdfstring{$\ast$}{*}buf, int p, const char \texorpdfstring{$\ast$}{*}label, float value)
+\begin{DoxyCompactList}\small\item\em Вычисляет компоненты float числа и добавляет коэффициент калибровки в текстовый буфер. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{utils_8c_a55932f40f095dc4d4d95db5984127f91}{strip\+\_\+extra\+\_\+spaces}} (char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Очищает строку от лишних пробелов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Вспомогательные функции 
+
+
+
+\label{utils_8c_doc-func-members}
+\Hypertarget{utils_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{utils_8c_acb650ec9270f481120df27053f613adf}\index{utils.c@{utils.c}!append\_float\_coef@{append\_float\_coef}}
+\index{append\_float\_coef@{append\_float\_coef}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{append\_float\_coef()}{append\_float\_coef()}}
+{\footnotesize\ttfamily \label{utils_8c_acb650ec9270f481120df27053f613adf} 
+int append\+\_\+float\+\_\+coef (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{p}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{label}{, }\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет компоненты float числа и добавляет коэффициент калибровки в текстовый буфер. 
+
+Функция разбивает вещественное число на целую и дробную части, и записывает получившуюся строку в буфер.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em buf} & Указатель на рабочий буфер, куда дописываются данные. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em p} & Текущая позиция (индекс) для записи в буфере. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em label} & Нуль-\/терминальная строка с именем коэффициента. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em value} & Вещественное значение коэффициента (float), которое нужно вывести.\\
+\hline
+\end{DoxyParams}
+
+\item \begin{DoxyReturn}{Returns}
+int Новый индекс позиции в буфере после успешной записи всех символов. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{utils_8c_afb9b20d8d18a8a91f75288ac429b2e83}\index{utils.c@{utils.c}!append\_sensor\_data@{append\_sensor\_data}}
+\index{append\_sensor\_data@{append\_sensor\_data}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{append\_sensor\_data()}{append\_sensor\_data()}}
+{\footnotesize\ttfamily \label{utils_8c_afb9b20d8d18a8a91f75288ac429b2e83} 
+int append\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{p}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{label}{, }\item[{uint8\+\_\+t}]{is\+\_\+neg}{, }\item[{uint32\+\_\+t}]{main\+\_\+part}{, }\item[{uint32\+\_\+t}]{sub\+\_\+part}{, }\item[{char}]{unit}{}\end{DoxyParamCaption})}
+
+
+
+Форматирует и добавляет показания датчика в текстовый буфер. 
+
+Функция формирует строку фиксированного формата для вывода физических величин (напряжение, ток)
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em buf} & Указатель на рабочий буфер, куда дописываются данные. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em p} & Текущая позиция (индекс) для записи в буфере. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em label} & Нуль-\/терминальная строка с именем физической величины. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+neg} & Флаг знака. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em main\+\_\+part} & Целая часть числа для вывода. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em sub\+\_\+part} & Дробная часть числа для вывода. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em unit} & Символ единицы измерения.\\
+\hline
+\end{DoxyParams}
+
+\item \begin{DoxyReturn}{Returns}
+int Новый индекс позиции в буфере после успешной записи всех символов. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{utils_8c_a826eff87694430a73e0b3143cfb13c03}\index{utils.c@{utils.c}!custom\_atof@{custom\_atof}}
+\index{custom\_atof@{custom\_atof}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{custom\_atof()}{custom\_atof()}}
+{\footnotesize\ttfamily \label{utils_8c_a826eff87694430a73e0b3143cfb13c03} 
+float custom\+\_\+atof (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Конвертирует строку ASCII в неотрицательное число с плавающей точкой. 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+Парсит целую и дробную части числа. В качестве разделителя допускается только точка (\textquotesingle{}.\textquotesingle{}).
+\begin{DoxyItemize}
+\item \begin{DoxyNote}{Note}
+Функция не обрабатывает знак минус (\textquotesingle{}-\/\textquotesingle{}) и возвращает ошибку при попытке передать первым символом не цифру. Числа больше допустимого будут приведены к диапазону типа данных float.
+\end{DoxyNote}
+
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em str} & Указатель на исходную нуль-\/терминальную строку.\\
+\hline
+\end{DoxyParams}
+
+\item 
+\begin{DoxyRetVals}{Return values}
+{\em $>$=0} & Успешно декодированное число. \\
+\hline
+{\em -\/1.\+0f} & Ошибка парсинга (неверный формат или некорректные символы). \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}\Hypertarget{utils_8c_ab6c6cb21872638cf854ff67bb990999f}\index{utils.c@{utils.c}!custom\_atoi@{custom\_atoi}}
+\index{custom\_atoi@{custom\_atoi}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{custom\_atoi()}{custom\_atoi()}}
+{\footnotesize\ttfamily \label{utils_8c_ab6c6cb21872638cf854ff67bb990999f} 
+int32\+\_\+t custom\+\_\+atoi (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Конвертирует строку ASCII в неотрицательное целое число (от 0 до 65\+\_\+535). 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+Функция посимвольно парсит строку, пока не встретит символ, не являющийся цифрой от \textquotesingle{}0\textquotesingle{} до \textquotesingle{}9\textquotesingle{}.
+\begin{DoxyItemize}
+\item \begin{DoxyNote}{Note}
+Функция не обрабатывает знак минус (\textquotesingle{}-\/\textquotesingle{}) и возвращает ошибку при попытке передать первым символом не цифру. Числа больше допустимого будут приведены к диапазону 0-\/65\+\_\+535.
+\end{DoxyNote}
+
+\item 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em str} & Указатель на исходную нуль-\/терминальную строку.\\
+\hline
+\end{DoxyParams}
+
+\item 
+\begin{DoxyRetVals}{Return values}
+{\em $>$=0} & Успешно декодированное число. \\
+\hline
+{\em -\/1} & Ошибка парсинга (строка пуста или первый символ не является цифрой). \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}\Hypertarget{utils_8c_a98bd779a33f0ddf654b2afc66c117b64}\index{utils.c@{utils.c}!custom\_utoa@{custom\_utoa}}
+\index{custom\_utoa@{custom\_utoa}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{custom\_utoa()}{custom\_utoa()}}
+{\footnotesize\ttfamily \label{utils_8c_a98bd779a33f0ddf654b2afc66c117b64} 
+int custom\+\_\+utoa (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{value}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{digits}{, }\item[{char}]{pad\+\_\+char}{}\end{DoxyParamCaption})}
+
+
+
+Конвертирует беззнаковое 32-\/битное число в строку ASCII с форматированием. 
+
+Функция переводит число в текстовый вид, выравнивая его по правому краю и заполняя пустые левые разряды указанным символом-\/заполнителем (например, нулями или пробелами). Строка записывается в буфер БЕЗ завершающего нуля (нуль-\/терминатора), что позволяет легко склеивать строки. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em value} & Преобразуемое число (uint32\+\_\+t). \\
+\hline
+\doxymbox{\texttt{out}}  & {\em buf} & Указатель на буфер в памяти, куда будет записан результат. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em digits} & Минимальное количество символов, которое должно быть записано. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em pad\+\_\+char} & Символ для заполнения пустых левых разрядов (например, \textquotesingle{}0\textquotesingle{} или \textquotesingle{} \textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Длина Value должна быть НЕ БОЛЬШЕ значения digits. Соответствующей проверки нет. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+int Количество фактически записанных в буфер символов (всегда равно параметру digits). 
+\end{DoxyReturn}
+\Hypertarget{utils_8c_a55932f40f095dc4d4d95db5984127f91}\index{utils.c@{utils.c}!strip\_extra\_spaces@{strip\_extra\_spaces}}
+\index{strip\_extra\_spaces@{strip\_extra\_spaces}!utils.c@{utils.c}}
+\doxysubsubsection{\texorpdfstring{strip\_extra\_spaces()}{strip\_extra\_spaces()}}
+{\footnotesize\ttfamily \label{utils_8c_a55932f40f095dc4d4d95db5984127f91} 
+void strip\+\_\+extra\+\_\+spaces (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Очищает строку от лишних пробелов. 
+
+Удаляет все начальные и конечные пробелы, а также заменяет несколько подряд идущих пробелов внутри строки на один пробел. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em str} & Указатель на обрабатываемую нуль-\/терминальную строку. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,34 @@
+\doxysection{utils.\+h}
+\hypertarget{utils_8h_source}{}\label{utils_8h_source}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/utils.h@{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UTILS\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UTILS\_H\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PRECISION\_DIGITS\ 4}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#if\ PRECISION\_DIGITS\ ==\ 1}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 10.0f}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#elif\ PRECISION\_DIGITS\ ==\ 2}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 100.0f}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#elif\ PRECISION\_DIGITS\ ==\ 3}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 1000.0f}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#elif\ PRECISION\_DIGITS\ ==\ 4}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 10000.0f}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#elif\ PRECISION\_DIGITS\ ==\ 5}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 100000.0f}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \#define\ PRECISION\ 100.0f}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ int32\_t\ custom\_atoi(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{float}\ custom\_atof(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{int}\ custom\_utoa(uint32\_t\ value,\ \textcolor{keywordtype}{char}*\ buf,\ \textcolor{keywordtype}{int}\ digits,\ \textcolor{keywordtype}{char}\ pad\_char);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{int}\ append\_sensor\_data(\textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{int}\ p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label,\ uint8\_t\ is\_neg,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ main\_part,\ uint32\_t\ sub\_part,\ \textcolor{keywordtype}{char}\ unit);}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{int}\ append\_float\_coef(\textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{int}\ p,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label,\ \textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ strip\_extra\_spaces(\textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

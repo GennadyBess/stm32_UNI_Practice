@@ -1,0 +1,38 @@
+\doxysection{D:\+/\+\+MAI/\+stm32cubemx/\+projects/\+rwestw/\+\+Core/\+\+Src/\+mcp41010.c File Reference}
+\hypertarget{mcp41010_8c}{}\label{mcp41010_8c}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/mcp41010.c@{D:/MAI/stm32cubemx/projects/rwestw/Core/Src/mcp41010.c}}
+
+
+Драйвер цифрового потенциометра MCP41010.  
+
+
+{\ttfamily \+\#include "{}mcp41010.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{mcp41010_8c_a6302a574bf27618f95b33e2cd7577fe6}{MCP41010\+\_\+\+Set\+Value}} (uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Установка положения цифрового потенциометра MCP41010. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Драйвер цифрового потенциометра MCP41010. 
+
+
+
+\label{mcp41010_8c_doc-func-members}
+\Hypertarget{mcp41010_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mcp41010_8c_a6302a574bf27618f95b33e2cd7577fe6}\index{mcp41010.c@{mcp41010.c}!MCP41010\_SetValue@{MCP41010\_SetValue}}
+\index{MCP41010\_SetValue@{MCP41010\_SetValue}!mcp41010.c@{mcp41010.c}}
+\doxysubsubsection{\texorpdfstring{MCP41010\_SetValue()}{MCP41010\_SetValue()}}
+{\footnotesize\ttfamily \label{mcp41010_8c_a6302a574bf27618f95b33e2cd7577fe6} 
+void MCP41010\+\_\+\+Set\+Value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Установка положения цифрового потенциометра MCP41010. 
+
+Функция формирует полную команду управления, состоящую из 16 бит. Первым байтом передается команда записи в канал Potentiometer 0 (0x11), вторым — целевая позиция движка (0-\/255). 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em value} & Новое положение движка потенциометра (от 0 до 255). 0 — минимальное сопротивление. 255 — максимальное сопротивление (номинал 10 кОм). \\
+\hline
+\end{DoxyParams}

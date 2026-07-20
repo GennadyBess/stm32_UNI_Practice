@@ -1,0 +1,104 @@
+\doxysection{ee.\+h}
+\hypertarget{ee_8h_source}{}\label{ee_8h_source}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/ee.h@{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/ee.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_EE\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_EE\_H\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/***********************************************************************************************************}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Author:\ \ \ \ \ Nima\ Askari}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ Github:\ \ \ \ \ https://www.github.com/NimaLTD}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ LinkedIn:\ \ \ https://www.linkedin.com/in/nimaltd}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ Youtube:\ \ \ \ https://www.youtube.com/@nimaltd}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ Instagram:\ \ https://instagram.com/github.NimaLTD}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Version:\ \ \ \ 3.2.2}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ }}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ History:}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.2.2}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ Erasing\ L0,\ L1,\ Series}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.2.1}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ Selecting\ BANK\ for\ STM32W\ Series}}
+\DoxyCodeLine{00020\ \textcolor{comment}{}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.2.0}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Added\ Manual\ Configuration}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.1.3}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ L0,\ L1\ configuration}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.1.2}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ H5\ configuration}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.1.1}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ formatting\ F4}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.1.0}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Added\ Verify\ after\ Writing}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Added\ Checking\ Pointer\ in\ Reading/Writing}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Removed\ erasing\ buffer\ and\ formating\ before\ write}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.0.2}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Fixed\ Writing\ for\ H7B\ }}
+\DoxyCodeLine{00040\ \textcolor{comment}{}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.0.1}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Added\ comments}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.0.0}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Rewrite\ again}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Support\ STM32CubeMx\ Packet\ installer}}
+\DoxyCodeLine{00047\ \textcolor{comment}{}}
+\DoxyCodeLine{00048\ \textcolor{comment}{***********************************************************************************************************/}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{/************************************************************************************************************}}
+\DoxyCodeLine{00056\ \textcolor{comment}{**************\ \ \ \ Include\ Headers}}
+\DoxyCodeLine{00057\ \textcolor{comment}{************************************************************************************************************/}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{/************************************************************************************************************}}
+\DoxyCodeLine{00063\ \textcolor{comment}{**************\ \ \ \ Public\ Definitions}}
+\DoxyCodeLine{00064\ \textcolor{comment}{************************************************************************************************************/}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ none}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{/************************************************************************************************************}}
+\DoxyCodeLine{00069\ \textcolor{comment}{**************\ \ \ \ Public\ struct/enum}}
+\DoxyCodeLine{00070\ \textcolor{comment}{************************************************************************************************************/}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pData;}
+\DoxyCodeLine{00075\ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Size;}
+\DoxyCodeLine{00076\ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PageSectorSize;}
+\DoxyCodeLine{00077\ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Address;}
+\DoxyCodeLine{00078\ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PageSectorNumber;}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#if\ (defined\ FLASH\_BANK\_1)\ ||\ (defined\ FLASH\_BANK\_2)}}
+\DoxyCodeLine{00080\ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BankNumber;}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \}\ \doxymbox{\hyperlink{struct_e_e___handle_type_def}{EE\_HandleTypeDef}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{/************************************************************************************************************}}
+\DoxyCodeLine{00086\ \textcolor{comment}{**************\ \ \ \ Public\ Functions}}
+\DoxyCodeLine{00087\ \textcolor{comment}{************************************************************************************************************/}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ EE\_Init(\textcolor{keywordtype}{void}\ *pData,\ uint32\_t\ Size);}
+\DoxyCodeLine{00090\ uint32\_t\ \ EE\_Capacity(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ EE\_Format(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \ \ \ \ \ EE\_Read(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ EE\_Write(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

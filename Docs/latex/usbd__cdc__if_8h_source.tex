@@ -1,0 +1,73 @@
+\doxysection{usbd\+\_\+cdc\+\_\+if.\+h}
+\hypertarget{usbd__cdc__if_8h_source}{}\label{usbd__cdc__if_8h_source}\index{D:/MAI/stm32cubemx/projects/rwestw/USB\_DEVICE/App/usbd\_cdc\_if.h@{D:/MAI/stm32cubemx/projects/rwestw/USB\_DEVICE/App/usbd\_cdc\_if.h}}
+\doxymbox{\hyperlink{usbd__cdc__if_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ Header\ */}}
+\DoxyCodeLine{00019\ \textcolor{comment}{/*\ USER\ CODE\ END\ Header\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ \_\_USBD\_CDC\_IF\_H\_\_}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_\_USBD\_CDC\_IF\_H\_\_}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}usbd\_cdc.h"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ INCLUDE\ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*\ USER\ CODE\ END\ INCLUDE\ */}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*\ Define\ size\ for\ the\ receive\ and\ transmit\ buffer\ over\ CDC\ */}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ APP\_RX\_DATA\_SIZE\ \ 1024}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ APP\_TX\_DATA\_SIZE\ \ 1024}}
+\DoxyCodeLine{00054\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EXPORTED\_DEFINES\ */}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ CMD\_BUFFER\_SIZE\ 16}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ cmd\_ready;}
+\DoxyCodeLine{00057\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ cmd\_buffer[CMD\_BUFFER\_SIZE];}
+\DoxyCodeLine{00058\ \textcolor{comment}{/*\ USER\ CODE\ END\ EXPORTED\_DEFINES\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EXPORTED\_TYPES\ */}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{/*\ USER\ CODE\ END\ EXPORTED\_TYPES\ */}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EXPORTED\_MACRO\ */}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{/*\ USER\ CODE\ END\ EXPORTED\_MACRO\ */}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{extern}\ USBD\_CDC\_ItfTypeDef\ \doxymbox{\hyperlink{group___u_s_b_d___c_d_c___i_f_ga99394ed19b774f171df96c2848c411ed}{USBD\_Interface\_fops\_FS}};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EXPORTED\_VARIABLES\ */}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{/*\ USER\ CODE\ END\ EXPORTED\_VARIABLES\ */}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ uint8\_t\ \doxymbox{\hyperlink{group___u_s_b_d___c_d_c___i_f___exported___functions_prototype_ga5137d6201dbdef2bf351c5b4941c24f4}{CDC\_Transmit\_FS}}(uint8\_t*\ Buf,\ uint16\_t\ Len);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EXPORTED\_FUNCTIONS\ */}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{/*\ USER\ CODE\ END\ EXPORTED\_FUNCTIONS\ */}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_USBD\_CDC\_IF\_H\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00134\ }
+
+\end{DoxyCode}

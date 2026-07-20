@@ -1,0 +1,52 @@
+\doxysubsubsection{USBD\+\_\+\+CDC\+\_\+\+IF\+\_\+\+Private\+\_\+\+Variables }
+\hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables}{}\label{group___u_s_b_d___c_d_c___i_f___private___variables}\index{USBD\_CDC\_IF\_Private\_Variables@{USBD\_CDC\_IF\_Private\_Variables}}
+
+
+Private variables.  
+
+
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_ga8a0465f8e8bbe71e4d6e8011e975bf75}\label{group___u_s_b_d___c_d_c___i_f___private___variables_ga8a0465f8e8bbe71e4d6e8011e975bf75} 
+\+\#define {\bfseries CMD\+\_\+\+BUFFER\+\_\+\+SIZE}~16
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group___u_s_b_d___c_d_c___i_f___private___variables_ga1e37e6616e6affe5acf9c0befd063f6a}{User\+Rx\+Buffer\+FS}} \+[APP\+\_\+\+RX\+\_\+\+DATA\+\_\+\+SIZE]\+
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{group___u_s_b_d___c_d_c___i_f___private___variables_gad48fea85cdb7aed49bf62140a52f23e0}{User\+Tx\+Buffer\+FS}} \+[APP\+\_\+\+TX\+\_\+\+DATA\+\_\+\+SIZE]\+
+\item 
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_ga73ecb17475b6b09997fcb3a6fb9fbeb6}\label{group___u_s_b_d___c_d_c___i_f___private___variables_ga73ecb17475b6b09997fcb3a6fb9fbeb6} 
+volatile uint8\+\_\+t {\bfseries cmd\+\_\+ready} = 0
+\item 
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_ga3f73a09e76180a8cfb4e5b2008765680}\label{group___u_s_b_d___c_d_c___i_f___private___variables_ga3f73a09e76180a8cfb4e5b2008765680} 
+char {\bfseries cmd\+\_\+buffer} \+[CMD\+\_\+\+BUFFER\+\_\+\+SIZE]\+
+\item 
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_gae9deb10cdd143a2176b89113debcbd87}\label{group___u_s_b_d___c_d_c___i_f___private___variables_gae9deb10cdd143a2176b89113debcbd87} 
+uint16\+\_\+t {\bfseries cmd\+\_\+index} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Private variables. 
+
+
+
+\label{group___u_s_b_d___c_d_c___i_f___private___variables_doc-var-members}
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_doc-var-members}
+\doxysubsubsubsection{Variable Documentation}
+\Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_ga1e37e6616e6affe5acf9c0befd063f6a}\index{USBD\_CDC\_IF\_Private\_Variables@{USBD\_CDC\_IF\_Private\_Variables}!UserRxBufferFS@{UserRxBufferFS}}
+\index{UserRxBufferFS@{UserRxBufferFS}!USBD\_CDC\_IF\_Private\_Variables@{USBD\_CDC\_IF\_Private\_Variables}}
+\doxysubsubsubsubsection{\texorpdfstring{UserRxBufferFS}{UserRxBufferFS}}
+{\footnotesize\ttfamily \label{group___u_s_b_d___c_d_c___i_f___private___variables_ga1e37e6616e6affe5acf9c0befd063f6a} 
+uint8\+\_\+t User\+Rx\+Buffer\+FS\+[APP\+\_\+\+RX\+\_\+\+DATA\+\_\+\+SIZE]\+}
+
+Received data over USB are stored in this buffer \Hypertarget{group___u_s_b_d___c_d_c___i_f___private___variables_gad48fea85cdb7aed49bf62140a52f23e0}\index{USBD\_CDC\_IF\_Private\_Variables@{USBD\_CDC\_IF\_Private\_Variables}!UserTxBufferFS@{UserTxBufferFS}}
+\index{UserTxBufferFS@{UserTxBufferFS}!USBD\_CDC\_IF\_Private\_Variables@{USBD\_CDC\_IF\_Private\_Variables}}
+\doxysubsubsubsubsection{\texorpdfstring{UserTxBufferFS}{UserTxBufferFS}}
+{\footnotesize\ttfamily \label{group___u_s_b_d___c_d_c___i_f___private___variables_gad48fea85cdb7aed49bf62140a52f23e0} 
+uint8\+\_\+t User\+Tx\+Buffer\+FS\+[APP\+\_\+\+TX\+\_\+\+DATA\+\_\+\+SIZE]\+}
+
+Data to send over USB CDC are stored in this buffer 

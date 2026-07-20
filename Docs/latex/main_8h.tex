@@ -1,0 +1,164 @@
+\doxysection{D:\+/\+\+MAI/\+stm32cubemx/\+projects/\+rwestw/\+\+Core/\+\+Inc/\+main.h File Reference}
+\hypertarget{main_8h}{}\label{main_8h}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/main.h@{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/main.h}}
+
+
+:\+ Header for \doxylink{main_8c}{main.\+c} file. This file contains the common defines of the application.  
+
+
+{\ttfamily \+\#include "{}stm32f1xx\+\_\+hal.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}}
+\item 
+struct \doxymbox{\hyperlink{structcalibration__settings__t}{calibration\+\_\+settings\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8h_a4a09cee496a14fb57806fa907ec6c121}\label{main_8h_a4a09cee496a14fb57806fa907ec6c121} 
+\+\#define {\bfseries POT\+\_\+\+SCK\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+13
+\item 
+\Hypertarget{main_8h_af0616f276f7c35b02c3e4ed04827ff7f}\label{main_8h_af0616f276f7c35b02c3e4ed04827ff7f} 
+\+\#define {\bfseries POT\+\_\+\+SCK\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\Hypertarget{main_8h_a469b55a92222d58a2c14660577f241fb}\label{main_8h_a469b55a92222d58a2c14660577f241fb} 
+\+\#define {\bfseries POT\+\_\+\+CS\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+14
+\item 
+\Hypertarget{main_8h_acee25ac64871aa124469bcaa63a1f938}\label{main_8h_acee25ac64871aa124469bcaa63a1f938} 
+\+\#define {\bfseries POT\+\_\+\+CS\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\Hypertarget{main_8h_afc81744e1aec84b5bae3ac0da82e855e}\label{main_8h_afc81744e1aec84b5bae3ac0da82e855e} 
+\+\#define {\bfseries POT\+\_\+\+MOSI\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+15
+\item 
+\Hypertarget{main_8h_aee6022311dcb9b5dc3a4e1fbac7df29a}\label{main_8h_aee6022311dcb9b5dc3a4e1fbac7df29a} 
+\+\#define {\bfseries POT\+\_\+\+MOSI\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\Hypertarget{main_8h_a7f363c832a6d9ac5fd5eb9e2d47b06a8}\label{main_8h_a7f363c832a6d9ac5fd5eb9e2d47b06a8} 
+\+\#define {\bfseries CONV\+\_\+\+EN\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+8
+\item 
+\Hypertarget{main_8h_a63e2f4af34e79ae6279c930df53b2a85}\label{main_8h_a63e2f4af34e79ae6279c930df53b2a85} 
+\+\#define {\bfseries CONV\+\_\+\+EN\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{main_8h_a50a66d93d7b661a20858569350d02404}{Set\+\_\+\+Target\+\_\+\+Voltage}} (float target\+\_\+voltage)
+\begin{DoxyCompactList}\small\item\em Установка целевого напряжения. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{main_8h_a5eadc546908520336f6ce0349546ef46}{Set\+\_\+\+Target\+\_\+\+Current}} (float target\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Установка целевого значения тока. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8h_a4c7b72ddf7ba6b0ac81f3951433099fc}\label{main_8h_a4c7b72ddf7ba6b0ac81f3951433099fc} 
+\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} {\bfseries voltage}
+\item 
+\Hypertarget{main_8h_aeab08c0a4d93e86c3d2a6b02510baccc}\label{main_8h_aeab08c0a4d93e86c3d2a6b02510baccc} 
+\doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} {\bfseries current}
+\item 
+\Hypertarget{main_8h_a4f8234c8ffd6b6ab4cf8ce442e43637e}\label{main_8h_a4f8234c8ffd6b6ab4cf8ce442e43637e} 
+\doxymbox{\hyperlink{structcalibration__settings__t}{calibration\+\_\+settings\+\_\+t}} {\bfseries settings}
+\item 
+\Hypertarget{main_8h_acb7b5be6e504988f60184ca14b4af146}\label{main_8h_acb7b5be6e504988f60184ca14b4af146} 
+volatile uint16\+\_\+t {\bfseries debug\+\_\+interval}
+\item 
+\Hypertarget{main_8h_a7344c86d030ec394d33dc17b587e6e05}\label{main_8h_a7344c86d030ec394d33dc17b587e6e05} 
+volatile uint8\+\_\+t {\bfseries debug\+\_\+enabled}
+\item 
+\Hypertarget{main_8h_ad7fb459b90b39993f29af03acaf5084e}\label{main_8h_ad7fb459b90b39993f29af03acaf5084e} 
+volatile uint8\+\_\+t {\bfseries voltage\+\_\+regulation\+\_\+enabled}
+\item 
+\Hypertarget{main_8h_abe67a41f105476714617d029557e00e2}\label{main_8h_abe67a41f105476714617d029557e00e2} 
+volatile uint8\+\_\+t {\bfseries current\+\_\+regulation\+\_\+enabled}
+\item 
+\Hypertarget{main_8h_a8db5d98a6779ec555230321de7600103}\label{main_8h_a8db5d98a6779ec555230321de7600103} 
+volatile uint8\+\_\+t {\bfseries get\+\_\+status\+\_\+enabled}
+\item 
+\Hypertarget{main_8h_ac0395c1f98b52df3f9f1fcd54ead3dd0}\label{main_8h_ac0395c1f98b52df3f9f1fcd54ead3dd0} 
+float {\bfseries k\+\_\+voltage}
+\item 
+\Hypertarget{main_8h_ad6e20f9661f49cb6957ffcf125491db7}\label{main_8h_ad6e20f9661f49cb6957ffcf125491db7} 
+float {\bfseries b\+\_\+voltage}
+\item 
+\Hypertarget{main_8h_a67cac0e249ff3f215164f5e6c6f1dd73}\label{main_8h_a67cac0e249ff3f215164f5e6c6f1dd73} 
+float {\bfseries k\+\_\+current}
+\item 
+\Hypertarget{main_8h_a65cbdf262b4461216912123f22560cb4}\label{main_8h_a65cbdf262b4461216912123f22560cb4} 
+float {\bfseries b\+\_\+current}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+:\+ Header for \doxylink{main_8c}{main.\+c} file. This file contains the common defines of the application. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2026 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\label{main_8h_doc-func-members}
+\Hypertarget{main_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8h_a1730ffe1e560465665eb47d9264826f9}\index{main.h@{main.h}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily \label{main_8h_a1730ffe1e560465665eb47d9264826f9} 
+void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8h_a5eadc546908520336f6ce0349546ef46}\index{main.h@{main.h}!Set\_Target\_Current@{Set\_Target\_Current}}
+\index{Set\_Target\_Current@{Set\_Target\_Current}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Set\_Target\_Current()}{Set\_Target\_Current()}}
+{\footnotesize\ttfamily \label{main_8h_a5eadc546908520336f6ce0349546ef46} 
+uint8\+\_\+t Set\+\_\+\+Target\+\_\+\+Current (\begin{DoxyParamCaption}\item[{float}]{trg\+\_\+current}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Установка целевого значения тока. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em target\+\_\+current} & Желаемый выходной ток в Амперах. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & Расчет успешен. \\
+\hline
+{\em 0} & Ошибка расчета. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8h_a50a66d93d7b661a20858569350d02404}\index{main.h@{main.h}!Set\_Target\_Voltage@{Set\_Target\_Voltage}}
+\index{Set\_Target\_Voltage@{Set\_Target\_Voltage}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Set\_Target\_Voltage()}{Set\_Target\_Voltage()}}
+{\footnotesize\ttfamily \label{main_8h_a50a66d93d7b661a20858569350d02404} 
+uint8\+\_\+t Set\+\_\+\+Target\+\_\+\+Voltage (\begin{DoxyParamCaption}\item[{float}]{trg\+\_\+voltage}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Установка целевого напряжения. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em target\+\_\+voltage} & Желаемое выходное напряжение в Вольтах. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & Целевое напряжение валидно и установлено. \\
+\hline
+{\em 0} & Заданное значение выходит за аппаратные границы схемы регулирования. \\
+\hline
+\end{DoxyRetVals}

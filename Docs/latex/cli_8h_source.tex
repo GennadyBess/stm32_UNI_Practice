@@ -1,0 +1,19 @@
+\doxysection{cli.\+h}
+\hypertarget{cli_8h_source}{}\label{cli_8h_source}\index{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/cli.h@{D:/MAI/stm32cubemx/projects/rwestw/Core/Inc/cli.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_CLI\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_CLI\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{typedef}\ void\ (*cmd\_handler\_t)(\textcolor{keywordtype}{char}\ *args);}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00008\ \ \ \ \ cmd\_handler\_t\ handler;}
+\DoxyCodeLine{00009\ \}\ \doxymbox{\hyperlink{structcommand__t}{command\_t}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ process\_command(\textcolor{keywordtype}{char}\ *cmd);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
