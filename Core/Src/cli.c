@@ -135,8 +135,12 @@ void do_led(char *args) {
 }
 
 /**
- * @brief Обработчик команды "set". Ручная установка значения цифрового потенциометра/напряжения/тока.
- * @param[in] args Строка параметров. Первым токеном идет "r", "v", "c", вторым — число.
+ * @brief  Обработчик команды "set". Ручная установка целевых параметров.
+ * @details Поддерживает три режима:
+ *          - `set v <float>` : Установка целевого напряжения
+ *          - `set c <float>` : Установка целевого тока
+ *          - `set r <int>`   : Ручная запись кода в цифровой потенциометр (0–255)
+ * @param[in] args Строка параметров с токенами типа и значения.
  */
 void do_set(char *args) {
 	char *type_str = strtok(args, " ");
@@ -187,9 +191,9 @@ void do_set(char *args) {
 }
 
 /**
- * @brief Обработчик команды "coeff". Вывод текущих калибровочных коэффициентов и параметров PI.
- * @details Форматирует коэффициенты и выводит их	.
- * @param[in] args Строка выбора канала: "v" — напряжение, "c" — ток", pi" — коэффициенты PID. .
+ * @brief  Обработчик команды "coeff". Вывод текущих калибровочных и ПИД-коэффициентов.
+ * @param[in] args Выбор канала: "v" (калибровка напряжения), "c" (калибровка тока),
+ *                 "piv" (ПИ напряжения) или "pic" (ПИ тока).
  */
 void do_print_coefficients(char *args) {
 	if (strcmp(args, "v") == 0) {
@@ -213,18 +217,12 @@ void do_print_coefficients(char *args) {
 	else if (strcmp(args, "pic") == 0) {
 		char tx_buffer[64];
 		int p = 0;
-//
-//		const char v_head[] = "V_PID:\r\n";
-//		strcpy(&tx_buffer[p], v_head); p += strlen(v_head);
-//		p = append_float_coef(tx_buffer, p, "Kp: ", settings.volt_Kp);
-//		p = append_float_coef(tx_buffer, p, "Ki: ", settings.volt_Ki);
-//		p = append_float_coef(tx_buffer, p, "Kd: ", settings.volt_Kd);
-//		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
+
 		const char c_head[] = "C_PID:\r\n";
 		strcpy(&tx_buffer[p], c_head); p += strlen(c_head);
-		p = append_float_coef(tx_buffer, p, "Kp: ", settings.curr_Kp);
-		p = append_float_coef(tx_buffer, p, "Ki: ", settings.curr_Ki);
-		p = append_float_coef(tx_buffer, p, "Kd: ", settings.curr_Kd);
+		p = append_float_coef(tx_buffer, p, "Kp: ", c_Kp);
+		p = append_float_coef(tx_buffer, p, "Ki: ", c_Ki);
+		p = append_float_coef(tx_buffer, p, "Kd: ", c_Kd);
 		tx_buffer[p] = '\0';
 		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
 	}
@@ -234,9 +232,9 @@ void do_print_coefficients(char *args) {
 
 		const char v_head[] = "V_PID:\r\n";
 		strcpy(&tx_buffer[p], v_head); p += strlen(v_head);
-		p = append_float_coef(tx_buffer, p, "Kp: ", settings.volt_Kp);
-		p = append_float_coef(tx_buffer, p, "Ki: ", settings.volt_Ki);
-		p = append_float_coef(tx_buffer, p, "Kd: ", settings.volt_Kd);
+		p = append_float_coef(tx_buffer, p, "Kp: ", v_Kp);
+		p = append_float_coef(tx_buffer, p, "Ki: ", v_Ki);
+		p = append_float_coef(tx_buffer, p, "Kd: ", v_Kd);
 		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
 	}
 	else {
@@ -247,10 +245,12 @@ void do_print_coefficients(char *args) {
 }
 
 /**
- * @brief Обработчик команды "cal". Комплексное управление процессом калибровки.
- * @details Поддерживает три режима: добавление точки (cal <v|c> <value>),
- * расчет и сброс коэффициентов (cal <v|c> start), (cal <v|c> reset).
- * @param[in] args Строка параметров. Первым токеном идет "v" или "c", вторым — "start", "reset" или число.
+ * @brief  Обработчик команды "cal". Управление процессом калибровки АЦП.
+ * @details Поддерживает режимы:
+ *          - `cal <v|c> <float>` : Добавление экспериментальной точки (измеренное vs эталонное)
+ *          - `cal <v|c> start`   : Выполнение расчета МНК и сохранение параметров в Flash
+ *          - `cal <v|c> reset`   : Сброс калибровочных коэффициентов к дефолтным (k=1, b=0)
+ * @param[in] args Строка параметров.
  */
 void do_calibration(char *args) {
 	if (!args || *args == '\0') {
@@ -366,9 +366,10 @@ void do_calibration(char *args) {
 }
 
 /**
- * @brief Обработчик команды "pi". Изменение коэффициентов PI-регулятора (Kp, Ki, Kd).
- * @details Формат команды: pi <v|c> <kp|ki|kd> <value>.
- * Применяет новые значения и сохраняет их во Flash.
+ * @brief  Обработчик команды "pi". Настройка и сохранение коэффициентов PI-регулятора.
+ * @details Форматы команды:
+ *          - `pi <v|c> <kp|ki|kd> <value>` : Оперативное изменение коэффициента
+ *          - `pi <v|c> save`              : Сохранение настроек в Flash
  * @param[in] args Строка параметров.
  */
 void do_pi_change(char *args) {
@@ -403,6 +404,24 @@ void do_pi_change(char *args) {
 		return;
 	}
 
+	if (strcmp(coeff_str, "save") == 0) {
+	    if (is_voltage) {
+			settings.volt_Kp = v_Kp;
+			settings.volt_Ki = v_Ki;
+			settings.volt_Kd = v_Kd;
+			char msg[] = "Pi coeffs for V saved\r\n";
+			CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+		} else {
+			settings.curr_Kp = c_Kp;
+			settings.curr_Ki = c_Ki;
+			settings.curr_Kd = c_Kd;
+			char msg[] = "Pi coeffs for C saves\r\n";
+			CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+		}
+	    EE_Write();
+	    return;
+	}
+
     uint8_t channel = 1;
 	if (strcmp(coeff_str, "kp") == 0) {
 		channel = 1;
@@ -421,20 +440,6 @@ void do_pi_change(char *args) {
 		char msg[] = "ERROR: Missing forth argument>\r\n";
 		CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
 		return;
-	}
-
-	if (strcmp(coeff_str, "save") == 0) {
-	    if (is_voltage) {
-			settings.volt_Kp = v_Kp;
-			settings.volt_Ki = v_Ki;
-			settings.volt_Kd = v_Kd;
-		} else {
-			settings.curr_Kp = c_Kp;
-			settings.curr_Ki = c_Ki;
-			settings.curr_Kd = c_Kd;
-		}
-	    EE_Write();
-	    return;
 	}
 
     float pi_coeff = custom_atof(value_str);
@@ -458,6 +463,9 @@ void do_pi_change(char *args) {
 	CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
 }
 
+/**
+ * @brief Таблица сопоставления текстовых команд и функций-обработчиков CLI.
+ */
 const command_t cmd_table[] = {
     {"debug", do_debug},
     {"get",   do_get},

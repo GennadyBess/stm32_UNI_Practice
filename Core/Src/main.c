@@ -202,12 +202,12 @@ int main(void)
 	  		Read_ADC(&voltage, &hadc1, 32, (180.0f + 15.0f), 15.0f);
 	  		Read_ADC(&current, &hadc2, 32, 1.0f, 200.0f * 0.005f);
 	  		if (voltage_regulation_enabled) {
-//	  			voltage_regulation_pi(-1, -1.0f);
+	  			voltage_regulation_pi(-1, -1.0f);
 			}
 	  		else if (current_regulation_enabled) {
-//	  			current_regulation_pi(-1.0f, -1.0f);
+	  			current_regulation_pi(-1.0f, -1.0f);
 
-	  			current_regulation_formula(-1.0f);
+//	  			current_regulation_formula(-1.0f);
 	  		}
 	  	}
 
@@ -659,6 +659,10 @@ void current_regulation_pi(float v_feedforward, float t_target) {
         if (diff > 0.05f) integral_err_curr = 0.0f;
 
         target_current = t_target;
+    }
+    if (current.whole_num < 0.002f) {
+    	integral_err_curr = 0.0f;
+    	return;
     }
 
     float error = target_current - current.whole_num;
