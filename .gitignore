@@ -19,6 +19,7 @@
 
 *.stlink
 *.jlink
+*.launch
 
 *.log
 /mx/
