@@ -10,8 +10,17 @@
    git clone https://github.com/GennadyBess/stm32_UNI_Practice
 2. **Импорт проекта:**
   * Откройте STM32CubeIDE.
-  * Выберите _File_ ➔ _Open Projects from file system_.
-  * Укажите путь к каталогу с проектом.
+  * Выберите _File_ ➔ _Import_.
+  * Выберите _General_ ➔ _Existing Projects into Workspace_ и нажмите _Next_.
+  * В строке _Select root directory_ нажмите _Browse_... и укажите папку скачанного проекта.
+    
+    * **2.1. Удаление неправильной конфигурации и создание правильной**
+    * Если проект компилируется, но не запустается, то попробуйте следующее:
+    * Откройте верхнее меню: _Run_ ➔ _Debug Configurations_
+    * Удалите конфигурацию в _C/C++ Application_ (выберите её и нажмите на красный крестик _Delete_ над списком).
+    * Теперь нажмите на _STM32 C/C++ Application_ и нажмите иконку _New launch configuration_ (белый листок с плюсиком вверху слева)
+    * На вкладке Main, в поле _C/C++ Application_ нажмите _Search Project_... и укажите ваш файл _Debug\rwestw.elf_.
+    * Сохраните и попробуйте запустить код.
 3. **Прошивка**
   * Подключите плату к ПК по USB
   * Подключите ST-Link v2 к контактам SWD платы (SWDIO, SWCLK, GND, 3.3V).
