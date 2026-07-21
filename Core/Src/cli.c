@@ -187,9 +187,9 @@ void do_set(char *args) {
 }
 
 /**
- * @brief Обработчик команды "coeff". Вывод текущих калибровочных коэффициентов.
+ * @brief Обработчик команды "coeff". Вывод текущих калибровочных коэффициентов и параметров PI.
  * @details Форматирует коэффициенты и выводит их	.
- * @param[in] args Строка выбора канала: "v" — напряжение, "c" — ток.
+ * @param[in] args Строка выбора канала: "v" — напряжение, "c" — ток", pi" — коэффициенты PID. .
  */
 void do_print_coefficients(char *args) {
 	if (strcmp(args, "v") == 0) {
@@ -209,7 +209,37 @@ void do_print_coefficients(char *args) {
 	    p = append_float_coef(tx_buffer, p, "K: ", k_current);
 	    p = append_float_coef(tx_buffer, p, "B: ", b_current);
 	    CDC_Transmit_FS((uint8_t*)tx_buffer, p);
-	} else {
+	}
+	else if (strcmp(args, "pic") == 0) {
+		char tx_buffer[64];
+		int p = 0;
+//
+//		const char v_head[] = "V_PID:\r\n";
+//		strcpy(&tx_buffer[p], v_head); p += strlen(v_head);
+//		p = append_float_coef(tx_buffer, p, "Kp: ", settings.volt_Kp);
+//		p = append_float_coef(tx_buffer, p, "Ki: ", settings.volt_Ki);
+//		p = append_float_coef(tx_buffer, p, "Kd: ", settings.volt_Kd);
+//		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
+		const char c_head[] = "C_PID:\r\n";
+		strcpy(&tx_buffer[p], c_head); p += strlen(c_head);
+		p = append_float_coef(tx_buffer, p, "Kp: ", settings.curr_Kp);
+		p = append_float_coef(tx_buffer, p, "Ki: ", settings.curr_Ki);
+		p = append_float_coef(tx_buffer, p, "Kd: ", settings.curr_Kd);
+		tx_buffer[p] = '\0';
+		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
+	}
+	else if (strcmp(args, "piv") == 0) {
+		char tx_buffer[64];
+		int p = 0;
+
+		const char v_head[] = "V_PID:\r\n";
+		strcpy(&tx_buffer[p], v_head); p += strlen(v_head);
+		p = append_float_coef(tx_buffer, p, "Kp: ", settings.volt_Kp);
+		p = append_float_coef(tx_buffer, p, "Ki: ", settings.volt_Ki);
+		p = append_float_coef(tx_buffer, p, "Kd: ", settings.volt_Kd);
+		CDC_Transmit_FS((uint8_t*)tx_buffer, p);
+	}
+	else {
 		char msg[] = "ERORR: Invalid Argument\r\n";
 		CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
 	}
@@ -335,6 +365,99 @@ void do_calibration(char *args) {
 	}
 }
 
+/**
+ * @brief Обработчик команды "pi". Изменение коэффициентов PI-регулятора (Kp, Ki, Kd).
+ * @details Формат команды: pi <v|c> <kp|ki|kd> <value>.
+ * Применяет новые значения и сохраняет их во Flash.
+ * @param[in] args Строка параметров.
+ */
+void do_pi_change(char *args) {
+    if (!args || *args == '\0') {
+        char msg[] = "ERROR: Usage: pi <v|c> <kp|ki|kd> <value>\r\n";
+        CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+        return;
+    }
+
+    char *type_str = strtok(args, " ");
+    if (!type_str) {
+        char msg[] = "ERROR: Missing second argument>\r\n";
+        CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+        return;
+    }
+
+    uint8_t is_voltage = 0;
+    if (strcmp(type_str, "v") == 0) {
+        is_voltage = 1;
+    } else if (strcmp(type_str, "c") == 0) {
+        is_voltage = 0;
+    } else {
+        char msg[] = "ERROR: Invalid type. Use 'v' for voltage, 'c' for current\r\n";
+        CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+        return;
+    }
+
+    char *coeff_str = strtok(NULL, " ");
+    if (!coeff_str) {
+		char msg[] = "ERROR: Missing third argument>\r\n";
+		CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+		return;
+	}
+
+    uint8_t channel = 1;
+	if (strcmp(coeff_str, "kp") == 0) {
+		channel = 1;
+	} else if (strcmp(coeff_str, "ki") == 0) {
+		channel = 2;
+	} else if (strcmp(coeff_str, "kd") == 0) {
+		channel = 3;
+	} else {
+		char msg[] = "ERROR: Invalid channel. Use kp | ki | kd\r\n";
+		CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+		return;
+	}
+
+	char *value_str = strtok(NULL, " ");
+	if (!value_str) {
+		char msg[] = "ERROR: Missing forth argument>\r\n";
+		CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+		return;
+	}
+
+	if (strcmp(coeff_str, "save") == 0) {
+	    if (is_voltage) {
+			settings.volt_Kp = v_Kp;
+			settings.volt_Ki = v_Ki;
+			settings.volt_Kd = v_Kd;
+		} else {
+			settings.curr_Kp = c_Kp;
+			settings.curr_Ki = c_Ki;
+			settings.curr_Kd = c_Kd;
+		}
+	    EE_Write();
+	    return;
+	}
+
+    float pi_coeff = custom_atof(value_str);
+    if (pi_coeff == -1.0f) {
+        char msg[] = "ERROR: Invalid float value in PID coefficients\r\n";
+        CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+        return;
+    }
+
+
+    if (is_voltage) {
+		if (channel == 1)      v_Kp = pi_coeff;
+		else if (channel == 2) v_Ki = pi_coeff;
+		else if (channel == 3) v_Kd = pi_coeff;
+	} else {
+		if (channel == 1)     c_Kp = pi_coeff;
+		else if (channel == 2) c_Ki = pi_coeff;
+		else if (channel == 3) c_Kd = pi_coeff;
+	}
+	char msg[] = "PID coefficient updated\r\n";
+	CDC_Transmit_FS((uint8_t*)msg, strlen(msg));
+}
+
 const command_t cmd_table[] = {
     {"debug", do_debug},
     {"get",   do_get},
@@ -342,7 +465,8 @@ const command_t cmd_table[] = {
 	{"led",   do_led},
 	{"set",   do_set},
 	{"coeff", do_print_coefficients},
-	{"cal",   do_calibration}
+	{"cal",   do_calibration},
+	{"pi",    do_pi_change}
 };
 
 #define CMD_COUNT (sizeof(cmd_table) / sizeof(command_t))

@@ -57,6 +57,14 @@ typedef struct {
     float b_volt;
     float k_curr;
     float b_curr;
+
+    float volt_Kp;
+    float volt_Ki;
+    float volt_Kd;
+
+    float curr_Kp;
+    float curr_Ki;
+    float curr_Kd;
 } calibration_settings_t;
 extern calibration_settings_t settings;
 
@@ -70,6 +78,14 @@ extern float k_voltage;
 extern float b_voltage;
 extern float k_current;
 extern float b_current;
+
+extern float v_Kp;
+extern float v_Ki;
+extern float v_Kd;
+
+extern float c_Kp;
+extern float c_Ki;
+extern float c_Kd;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

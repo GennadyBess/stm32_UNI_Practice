@@ -76,6 +76,7 @@ void voltage_regulation();
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 volatile uint8_t voltage_regulation_enabled = 0;
 volatile uint8_t current_regulation_enabled = 0;
 volatile uint8_t debug_enabled = 0;
@@ -91,6 +92,7 @@ static float base_pot_value = 128.0f;
 static float base_voltage_feedforward = 0.0f;
 void voltage_regulation_pi(int16_t p_feedforward, float t_target);
 void current_regulation_pi(float v_feedforward, float t_target);
+void current_regulation_formula(float t_target);
 
 
 volatile uint16_t system_ms_ticks = 0;
@@ -101,6 +103,14 @@ float b_voltage = 0;
 
 float k_current = 1;
 float b_current = 0;
+
+float v_Kp = 12.0f;
+float v_Ki = 8.0f;
+float v_Kd = 0.05f;
+
+float c_Kp = 4.5f;
+float c_Ki = 6.0f;
+float c_Kd = 0.05f;
 
 Measurement_t voltage = { .type = 0};
 Measurement_t current = { .type = 1};
@@ -155,6 +165,14 @@ int main(void)
       settings.b_volt = 0.0f;
       settings.k_curr = 1.0f;
       settings.b_curr = 0.0f;
+
+      settings.volt_Kp = 12.0f;
+      settings.volt_Ki = 5.0f;
+      settings.volt_Kd = 0.05f;
+
+      settings.curr_Kp = 4.5f;
+      settings.curr_Ki = 6.0f;
+      settings.curr_Kd = 0.05f;
       settings.magic_number = 0xCAFEBABE;
       EE_Write();
   }
@@ -163,6 +181,15 @@ int main(void)
   b_voltage = settings.b_volt;
   k_current = settings.k_curr;
   b_current = settings.b_curr;
+
+  v_Kp = settings.volt_Kp;
+  v_Ki = settings.volt_Ki;
+  v_Kd = settings.volt_Kd;
+
+  c_Kp = settings.curr_Kp;
+  c_Ki = settings.curr_Ki;
+  c_Kd = settings.curr_Kd;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -175,10 +202,12 @@ int main(void)
 	  		Read_ADC(&voltage, &hadc1, 32, (180.0f + 15.0f), 15.0f);
 	  		Read_ADC(&current, &hadc2, 32, 1.0f, 200.0f * 0.005f);
 	  		if (voltage_regulation_enabled) {
-	  			voltage_regulation_pi(-1, -1.0f);
+//	  			voltage_regulation_pi(-1, -1.0f);
 			}
 	  		else if (current_regulation_enabled) {
-	  			current_regulation_pi(-1.0f, -1.0f);
+//	  			current_regulation_pi(-1.0f, -1.0f);
+
+	  			current_regulation_formula(-1.0f);
 	  		}
 	  	}
 
@@ -565,11 +594,11 @@ void voltage_regulation_pi(int16_t p_feedforward, float t_target) {
 
     float error = target_voltage - voltage.whole_num;
 
-    float p_term = 12 * error;
+    float p_term = v_Kp * error;
 
-    float next_integral = integral_err_vol+ error * 0.05;
+    float next_integral = integral_err_vol+ error * v_Kd;
 
-    float i_term = 5 * next_integral;
+    float i_term = v_Ki * next_integral;
     float control_action = p_term + i_term;
 
     // Результирующее значение потенциометра (обратная зависимость: меньше код -> больше вольт)
@@ -634,10 +663,10 @@ void current_regulation_pi(float v_feedforward, float t_target) {
 
     float error = target_current - current.whole_num;
 
-    float p_term = 4.5 * error;
+    float p_term = c_Kp * error;
 
-    float next_integral = integral_err_curr + error * 0.05;
-    float i_term = 6 * next_integral;
+    float next_integral = integral_err_curr + error * c_Kd;
+    float i_term = c_Ki * next_integral;
 
     float voltage_correction = p_term + i_term;
 
@@ -662,6 +691,36 @@ void current_regulation_pi(float v_feedforward, float t_target) {
 		if (pot > 255) pot = 255;
 	}
 
+	MCP41010_SetValue((uint8_t)pot);
+}
+
+void current_regulation_formula(float t_target) {
+	if (t_target >= 0.0f) {
+		target_current = t_target;
+	}
+
+	float I_out1 = current.whole_num;
+	float V_out1 = voltage.whole_num;
+
+	if (I_out1 <= 0.001f) {
+		return;
+	}
+
+	float R_load = V_out1 / I_out1;
+	float V_out2 = target_current * R_load;
+
+    float load = 1.25f * 180000.0f / (V_out2 - 1.25f) - 10000.0f;
+    int16_t pot = 255;
+    if (load < 0.0f) {
+		pot = 0;
+	} else if (load > 10000.0f) {
+		pot = 255;
+	} else {
+		pot = (int16_t)((load) * 256.0f / 10000.0f);
+		pot = pot - 2;
+		if (pot < 0) pot = 0;
+		if (pot > 255) pot = 255;
+	}
 	MCP41010_SetValue((uint8_t)pot);
 }
 
