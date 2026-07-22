@@ -28,6 +28,9 @@ void \doxymbox{\hyperlink{main_8c_a308828d696b125ce1b4c15fb7f183635}{voltage\+\_
 \begin{DoxyCompactList}\small\item\em Выполнение одного шага PI-\/регулирования напряжения. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{main_8c_add8f3ece32c1bc6ecacc02d602701a01}{current\+\_\+regulation\+\_\+pi}} (float v\+\_\+feedforward, float t\+\_\+target)
 \begin{DoxyCompactList}\small\item\em Выполнение одного шага PI-\/регулирования тока. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_ad09e50fe0960875ac77fca1f179c6b71}\label{main_8c_ad09e50fe0960875ac77fca1f179c6b71} 
+void {\bfseries current\+\_\+regulation\+\_\+formula} (float t\+\_\+target)
+\item 
 int \doxymbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}htim)
@@ -91,6 +94,24 @@ float {\bfseries k\+\_\+current} = 1
 \item 
 \Hypertarget{main_8c_a65cbdf262b4461216912123f22560cb4}\label{main_8c_a65cbdf262b4461216912123f22560cb4} 
 float {\bfseries b\+\_\+current} = 0
+\item 
+\Hypertarget{main_8c_a2bf88e29e14db1a905553418d7f28808}\label{main_8c_a2bf88e29e14db1a905553418d7f28808} 
+float {\bfseries v\+\_\+\+Kp} = 12.\+0f
+\item 
+\Hypertarget{main_8c_ac80909d0621a525505e7554c5b628ab6}\label{main_8c_ac80909d0621a525505e7554c5b628ab6} 
+float {\bfseries v\+\_\+\+Ki} = 8.\+0f
+\item 
+\Hypertarget{main_8c_a51ed77e733c9b887d206f5b18bb74f41}\label{main_8c_a51ed77e733c9b887d206f5b18bb74f41} 
+float {\bfseries v\+\_\+\+Kd} = 0.\+05f
+\item 
+\Hypertarget{main_8c_a09530ddb06119b6d6fb42f9b18c9af32}\label{main_8c_a09530ddb06119b6d6fb42f9b18c9af32} 
+float {\bfseries c\+\_\+\+Kp} = 4.\+5f
+\item 
+\Hypertarget{main_8c_a4ccb1ed683cd56253cc663c894d05966}\label{main_8c_a4ccb1ed683cd56253cc663c894d05966} 
+float {\bfseries c\+\_\+\+Ki} = 6.\+0f
+\item 
+\Hypertarget{main_8c_a23f5f5df67232e5c801ac119caa16104}\label{main_8c_a23f5f5df67232e5c801ac119caa16104} 
+float {\bfseries c\+\_\+\+Kd} = 0.\+05f
 \item 
 \Hypertarget{main_8c_a4c7b72ddf7ba6b0ac81f3951433099fc}\label{main_8c_a4c7b72ddf7ba6b0ac81f3951433099fc} 
 \doxymbox{\hyperlink{struct_measurement__t}{Measurement\+\_\+t}} {\bfseries voltage} = \{ .type = 0\}

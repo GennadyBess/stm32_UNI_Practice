@@ -23,7 +23,7 @@ struct \doxymbox{\hyperlink{structcal__point__t}{cal\+\_\+point\+\_\+t}}
 \+\#define {\bfseries CAL\+\_\+\+TABLE\+\_\+\+SIZE}~10
 \item 
 \Hypertarget{cli_8c_a29ebdd0ea51f66291f8602228c655d17}\label{cli_8c_a29ebdd0ea51f66291f8602228c655d17} 
-\+\#define {\bfseries CMD\+\_\+\+COUNT}~(sizeof(cmd\+\_\+table) /\+ sizeof(\doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}}))
+\+\#define {\bfseries CMD\+\_\+\+COUNT}~(sizeof(\doxymbox{\hyperlink{cli_8c_a5cff8331b93c949c99cf5d546b95de46}{cmd\+\_\+table}}) /\+ sizeof(\doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}}))
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -37,18 +37,20 @@ void \doxymbox{\hyperlink{cli_8c_ad4118ed092662e0e90456916f594d770}{do\+\_\+stop
 void \doxymbox{\hyperlink{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909}{do\+\_\+led}} (char \texorpdfstring{$\ast$}{*}args)
 \begin{DoxyCompactList}\small\item\em Обработчик команды "{}led"{}. Прямое управление отладочным светодиодом. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}{do\+\_\+set}} (char \texorpdfstring{$\ast$}{*}args)
-\begin{DoxyCompactList}\small\item\em Обработчик команды "{}set"{}. Ручная установка значения цифрового потенциометра/\+напряжения/\+тока. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}set"{}. Ручная установка целевых параметров. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{cli_8c_a969cc88f8457c08853eb84740f3e093b}{do\+\_\+print\+\_\+coefficients}} (char \texorpdfstring{$\ast$}{*}args)
-\begin{DoxyCompactList}\small\item\em Обработчик команды "{}coeff"{}. Вывод текущих калибровочных коэффициентов. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}coeff"{}. Вывод текущих калибровочных и ПИД-\/коэффициентов. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}{do\+\_\+calibration}} (char \texorpdfstring{$\ast$}{*}args)
-\begin{DoxyCompactList}\small\item\em Обработчик команды "{}cal"{}. Комплексное управление процессом калибровки. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}cal"{}. Управление процессом калибровки АЦП. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{cli_8c_ade3b706b842671f26fca1b902d142d45}{do\+\_\+pi\+\_\+change}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Обработчик команды "{}pi"{}. Настройка и сохранение коэффициентов PI-\/регулятора. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{cli_8c_a1476c7cf5dfb919bf662855c364e540a}{process\+\_\+command}} (char \texorpdfstring{$\ast$}{*}cmd)
 \begin{DoxyCompactList}\small\item\em Функция парсинга и распределения входящих строк команд. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const \doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}} \doxymbox{\hyperlink{cli_8c_a5cff8331b93c949c99cf5d546b95de46}{cmd\+\_\+table}} \+[$\,$]\+
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Таблица сопоставления текстовых команд и функций-\/обработчиков CLI. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -67,16 +69,19 @@ void do\+\_\+calibration (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\
 
 
 
-Обработчик команды "{}cal"{}. Комплексное управление процессом калибровки. 
+Обработчик команды "{}cal"{}. Управление процессом калибровки АЦП. 
 
-Поддерживает три режима:\+ добавление точки (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} 
-
-), расчет и сброс коэффициентов (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} start), (cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} reset). 
+Поддерживает режимы:\+
+\begin{DoxyItemize}
+\item {\ttfamily cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}float\texorpdfstring{$>$}{>}} :\+ Добавление экспериментальной точки (измеренное vs эталонное)
+\item {\ttfamily cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} start} :\+ Выполнение расчета МНК и сохранение параметров в Flash
+\item {\ttfamily cal \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} reset} :\+ Сброс калибровочных коэффициентов к дефолтным (k=1, b=0) 
 \begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. Первым токеном идет "{}v"{} или "{}c"{}, вторым — "{}start"{}, "{}reset"{} или число. \\
+\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{cli_8c_a78ca14048722c671e7f900c17ebf741f}\index{cli.c@{cli.c}!do\_debug@{do\_debug}}
+
+\end{DoxyItemize}\Hypertarget{cli_8c_a78ca14048722c671e7f900c17ebf741f}\index{cli.c@{cli.c}!do\_debug@{do\_debug}}
 \index{do\_debug@{do\_debug}!cli.c@{cli.c}}
 \doxysubsubsection{\texorpdfstring{do\_debug()}{do\_debug()}}
 {\footnotesize\ttfamily \label{cli_8c_a78ca14048722c671e7f900c17ebf741f} 
@@ -121,7 +126,26 @@ void do\+\_\+led (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}
 \doxymbox{\texttt{in}}  & {\em args} & Строка "{}on"{} для включения светодиода, "{}off"{} — для выключения. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{cli_8c_a969cc88f8457c08853eb84740f3e093b}\index{cli.c@{cli.c}!do\_print\_coefficients@{do\_print\_coefficients}}
+\Hypertarget{cli_8c_ade3b706b842671f26fca1b902d142d45}\index{cli.c@{cli.c}!do\_pi\_change@{do\_pi\_change}}
+\index{do\_pi\_change@{do\_pi\_change}!cli.c@{cli.c}}
+\doxysubsubsection{\texorpdfstring{do\_pi\_change()}{do\_pi\_change()}}
+{\footnotesize\ttfamily \label{cli_8c_ade3b706b842671f26fca1b902d142d45} 
+void do\+\_\+pi\+\_\+change (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Обработчик команды "{}pi"{}. Настройка и сохранение коэффициентов PI-\/регулятора. 
+
+Форматы команды:\+
+\begin{DoxyItemize}
+\item {\ttfamily pi \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}kp\texorpdfstring{$\vert$}{|}ki\texorpdfstring{$\vert$}{|}kd\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}} :\+ Оперативное изменение коэффициента
+\item {\ttfamily pi \texorpdfstring{$<$}{<}v\texorpdfstring{$\vert$}{|}c\texorpdfstring{$>$}{>} save} :\+ Сохранение настроек в Flash 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{cli_8c_a969cc88f8457c08853eb84740f3e093b}\index{cli.c@{cli.c}!do\_print\_coefficients@{do\_print\_coefficients}}
 \index{do\_print\_coefficients@{do\_print\_coefficients}!cli.c@{cli.c}}
 \doxysubsubsection{\texorpdfstring{do\_print\_coefficients()}{do\_print\_coefficients()}}
 {\footnotesize\ttfamily \label{cli_8c_a969cc88f8457c08853eb84740f3e093b} 
@@ -129,11 +153,11 @@ void do\+\_\+print\+\_\+coefficients (\begin{DoxyParamCaption}\item[{char \texor
 
 
 
-Обработчик команды "{}coeff"{}. Вывод текущих калибровочных коэффициентов. 
+Обработчик команды "{}coeff"{}. Вывод текущих калибровочных и ПИД-\/коэффициентов. 
 
-Форматирует коэффициенты и выводит их . 
+
 \begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em args} & Строка выбора канала:\+ "{}v"{} — напряжение, "{}c"{} — ток. \\
+\doxymbox{\texttt{in}}  & {\em args} & Выбор канала:\+ "{}v"{} (калибровка напряжения), "{}c"{} (калибровка тока), "{}piv"{} (ПИ напряжения) или "{}pic"{} (ПИ тока). \\
 \hline
 \end{DoxyParams}
 \Hypertarget{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}\index{cli.c@{cli.c}!do\_set@{do\_set}}
@@ -144,14 +168,19 @@ void do\+\_\+set (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}
 
 
 
-Обработчик команды "{}set"{}. Ручная установка значения цифрового потенциометра/\+напряжения/\+тока. 
+Обработчик команды "{}set"{}. Ручная установка целевых параметров. 
 
-
+Поддерживает три режима:\+
+\begin{DoxyItemize}
+\item {\ttfamily set v \texorpdfstring{$<$}{<}float\texorpdfstring{$>$}{>}} :\+ Установка целевого напряжения
+\item {\ttfamily set c \texorpdfstring{$<$}{<}float\texorpdfstring{$>$}{>}} :\+ Установка целевого тока
+\item {\ttfamily set r \texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} :\+ Ручная запись кода в цифровой потенциометр (0–255) 
 \begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em args} & Строка параметров. Первым токеном идет "{}r"{}, "{}v"{}, "{}c"{}, вторым — число. \\
+\doxymbox{\texttt{in}}  & {\em args} & Строка параметров с токенами типа и значения. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{cli_8c_ad4118ed092662e0e90456916f594d770}\index{cli.c@{cli.c}!do\_stop@{do\_stop}}
+
+\end{DoxyItemize}\Hypertarget{cli_8c_ad4118ed092662e0e90456916f594d770}\index{cli.c@{cli.c}!do\_stop@{do\_stop}}
 \index{do\_stop@{do\_stop}!cli.c@{cli.c}}
 \doxysubsubsection{\texorpdfstring{do\_stop()}{do\_stop()}}
 {\footnotesize\ttfamily \label{cli_8c_ad4118ed092662e0e90456916f594d770} 
@@ -201,7 +230,12 @@ const \doxymbox{\hyperlink{structcommand__t}{command\+\_\+t}} cmd\+\_\+table\+[$
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}led"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_a09c955a2d23fa05bff72eecd9a7d0909}{do\_led}}\},}
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}set"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_af314541cfc6523fa6dccc9f4df10d4c8}{do\_set}}\},}
 \DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}coeff"{}},\ \doxymbox{\hyperlink{cli_8c_a969cc88f8457c08853eb84740f3e093b}{do\_print\_coefficients}}\},}
-\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}cal"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}{do\_calibration}}\}}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}cal"{}},\ \ \ \doxymbox{\hyperlink{cli_8c_aad083faf2b0af2c96fdef9fa1d6e781a}{do\_calibration}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}pi"{}},\ \ \ \ \doxymbox{\hyperlink{cli_8c_ade3b706b842671f26fca1b902d142d45}{do\_pi\_change}}\}}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+Таблица сопоставления текстовых команд и функций-\/обработчиков CLI. 
+

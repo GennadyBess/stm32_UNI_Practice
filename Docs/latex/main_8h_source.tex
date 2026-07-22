@@ -44,56 +44,72 @@
 \DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{float}\ b\_volt;}
 \DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ k\_curr;}
 \DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ b\_curr;}
-\DoxyCodeLine{00060\ \}\ \doxymbox{\hyperlink{structcalibration__settings__t}{calibration\_settings\_t}};}
-\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{structcalibration__settings__t}{calibration\_settings\_t}}\ settings;}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint16\_t\ debug\_interval;}
-\DoxyCodeLine{00064\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ debug\_enabled;}
-\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ voltage\_regulation\_enabled;}
-\DoxyCodeLine{00066\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ current\_regulation\_enabled;}
-\DoxyCodeLine{00067\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ get\_status\_enabled;}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ k\_voltage;}
-\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ b\_voltage;}
-\DoxyCodeLine{00071\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ k\_current;}
-\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ b\_current;}
-\DoxyCodeLine{00073\ \textcolor{comment}{/*\ USER\ CODE\ END\ ET\ */}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{comment}{/*\ Exported\ constants\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
-\DoxyCodeLine{00076\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EC\ */}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \textcolor{comment}{/*\ USER\ CODE\ END\ EC\ */}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
-\DoxyCodeLine{00081\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EM\ */}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{comment}{/*\ USER\ CODE\ END\ EM\ */}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \textcolor{comment}{/*\ Exported\ functions\ prototypes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
-\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EFP\ */}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \textcolor{comment}{/*\ USER\ CODE\ END\ EFP\ */}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \textcolor{comment}{/*\ Private\ defines\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
-\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ POT\_SCK\_Pin\ GPIO\_PIN\_13}}
-\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ POT\_SCK\_GPIO\_Port\ GPIOB}}
-\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ POT\_CS\_Pin\ GPIO\_PIN\_14}}
-\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ POT\_CS\_GPIO\_Port\ GPIOB}}
-\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ POT\_MOSI\_Pin\ GPIO\_PIN\_15}}
-\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ POT\_MOSI\_GPIO\_Port\ GPIOB}}
-\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ CONV\_EN\_Pin\ GPIO\_PIN\_8}}
-\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ CONV\_EN\_GPIO\_Port\ GPIOA}}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ Private\ defines\ */}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ volt\_Kp;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ volt\_Ki;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ volt\_Kd;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ curr\_Kp;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ curr\_Ki;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ curr\_Kd;}
+\DoxyCodeLine{00068\ \}\ \doxymbox{\hyperlink{structcalibration__settings__t}{calibration\_settings\_t}};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{structcalibration__settings__t}{calibration\_settings\_t}}\ settings;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint16\_t\ debug\_interval;}
+\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ debug\_enabled;}
+\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ voltage\_regulation\_enabled;}
+\DoxyCodeLine{00074\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ current\_regulation\_enabled;}
+\DoxyCodeLine{00075\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ get\_status\_enabled;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ k\_voltage;}
+\DoxyCodeLine{00078\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ b\_voltage;}
+\DoxyCodeLine{00079\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ k\_current;}
+\DoxyCodeLine{00080\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ b\_current;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ v\_Kp;}
+\DoxyCodeLine{00083\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ v\_Ki;}
+\DoxyCodeLine{00084\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ v\_Kd;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ c\_Kp;}
+\DoxyCodeLine{00087\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ c\_Ki;}
+\DoxyCodeLine{00088\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ c\_Kd;}
+\DoxyCodeLine{00089\ \textcolor{comment}{/*\ USER\ CODE\ END\ ET\ */}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{/*\ Exported\ constants\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00092\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EC\ */}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ USER\ CODE\ END\ EC\ */}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EM\ */}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ USER\ CODE\ END\ EM\ */}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{/*\ Exported\ functions\ prototypes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \textcolor{comment}{/*\ USER\ CODE\ END\ Private\ defines\ */}}
+\DoxyCodeLine{00104\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ EFP\ */}}
 \DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
-\DoxyCodeLine{00107\ \}}
-\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_MAIN\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ USER\ CODE\ END\ EFP\ */}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{/*\ Private\ defines\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ POT\_SCK\_Pin\ GPIO\_PIN\_13}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ POT\_SCK\_GPIO\_Port\ GPIOB}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ POT\_CS\_Pin\ GPIO\_PIN\_14}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ POT\_CS\_GPIO\_Port\ GPIOB}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ POT\_MOSI\_Pin\ GPIO\_PIN\_15}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ POT\_MOSI\_GPIO\_Port\ GPIOB}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ CONV\_EN\_Pin\ GPIO\_PIN\_8}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ CONV\_EN\_GPIO\_Port\ GPIOA}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ Private\ defines\ */}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{/*\ USER\ CODE\ END\ Private\ defines\ */}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_MAIN\_H\ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

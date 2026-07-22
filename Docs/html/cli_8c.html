@@ -137,7 +137,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a7599daea2ec855543c314777fe5ec162" id="r_a7599daea2ec855543c314777fe5ec162"><td class="memItemLeft"><a id="a7599daea2ec855543c314777fe5ec162" name="a7599daea2ec855543c314777fe5ec162"></a>
 #define&#160;</td><td class="memItemRight"><b>CAL_TABLE_SIZE</b>&#160;&#160;&#160;10</td></tr>
 <tr class="memitem:a29ebdd0ea51f66291f8602228c655d17" id="r_a29ebdd0ea51f66291f8602228c655d17"><td class="memItemLeft"><a id="a29ebdd0ea51f66291f8602228c655d17" name="a29ebdd0ea51f66291f8602228c655d17"></a>
-#define&#160;</td><td class="memItemRight"><b>CMD_COUNT</b>&#160;&#160;&#160;(sizeof(cmd_table) / sizeof(<a class="el" href="structcommand__t.html">command_t</a>))</td></tr>
+#define&#160;</td><td class="memItemRight"><b>CMD_COUNT</b>&#160;&#160;&#160;(sizeof(<a class="el" href="#a5cff8331b93c949c99cf5d546b95de46">cmd_table</a>) / sizeof(<a class="el" href="structcommand__t.html">command_t</a>))</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -150,17 +150,20 @@ Functions</h2></td></tr>
 <tr class="memitem:a09c955a2d23fa05bff72eecd9a7d0909" id="r_a09c955a2d23fa05bff72eecd9a7d0909"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a09c955a2d23fa05bff72eecd9a7d0909">do_led</a> (char *args)</td></tr>
 <tr class="memdesc:a09c955a2d23fa05bff72eecd9a7d0909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "led". Прямое управление отладочным светодиодом.  <br /></td></tr>
 <tr class="memitem:af314541cfc6523fa6dccc9f4df10d4c8" id="r_af314541cfc6523fa6dccc9f4df10d4c8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af314541cfc6523fa6dccc9f4df10d4c8">do_set</a> (char *args)</td></tr>
-<tr class="memdesc:af314541cfc6523fa6dccc9f4df10d4c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "set". Ручная установка значения цифрового потенциометра/напряжения/тока.  <br /></td></tr>
+<tr class="memdesc:af314541cfc6523fa6dccc9f4df10d4c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "set". Ручная установка целевых параметров.  <br /></td></tr>
 <tr class="memitem:a969cc88f8457c08853eb84740f3e093b" id="r_a969cc88f8457c08853eb84740f3e093b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a969cc88f8457c08853eb84740f3e093b">do_print_coefficients</a> (char *args)</td></tr>
-<tr class="memdesc:a969cc88f8457c08853eb84740f3e093b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "coeff". Вывод текущих калибровочных коэффициентов.  <br /></td></tr>
+<tr class="memdesc:a969cc88f8457c08853eb84740f3e093b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "coeff". Вывод текущих калибровочных и ПИД-коэффициентов.  <br /></td></tr>
 <tr class="memitem:aad083faf2b0af2c96fdef9fa1d6e781a" id="r_aad083faf2b0af2c96fdef9fa1d6e781a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aad083faf2b0af2c96fdef9fa1d6e781a">do_calibration</a> (char *args)</td></tr>
-<tr class="memdesc:aad083faf2b0af2c96fdef9fa1d6e781a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "cal". Комплексное управление процессом калибровки.  <br /></td></tr>
+<tr class="memdesc:aad083faf2b0af2c96fdef9fa1d6e781a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "cal". Управление процессом калибровки АЦП.  <br /></td></tr>
+<tr class="memitem:ade3b706b842671f26fca1b902d142d45" id="r_ade3b706b842671f26fca1b902d142d45"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ade3b706b842671f26fca1b902d142d45">do_pi_change</a> (char *args)</td></tr>
+<tr class="memdesc:ade3b706b842671f26fca1b902d142d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик команды "pi". Настройка и сохранение коэффициентов PI-регулятора.  <br /></td></tr>
 <tr class="memitem:a1476c7cf5dfb919bf662855c364e540a" id="r_a1476c7cf5dfb919bf662855c364e540a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1476c7cf5dfb919bf662855c364e540a">process_command</a> (char *cmd)</td></tr>
 <tr class="memdesc:a1476c7cf5dfb919bf662855c364e540a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция парсинга и распределения входящих строк команд.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a5cff8331b93c949c99cf5d546b95de46" id="r_a5cff8331b93c949c99cf5d546b95de46"><td class="memItemLeft">const <a class="el" href="structcommand__t.html">command_t</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5cff8331b93c949c99cf5d546b95de46">cmd_table</a> []</td></tr>
+<tr class="memdesc:a5cff8331b93c949c99cf5d546b95de46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Таблица сопоставления текстовых команд и функций-обработчиков CLI.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Обработка консольных команд пользователя </p>
@@ -180,14 +183,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Обработчик команды "cal". Комплексное управление процессом калибровки. </p>
-<p>Поддерживает три режима: добавление точки (cal &lt;v|c&gt; </p>
-<p>), расчет и сброс коэффициентов (cal &lt;v|c&gt; start), (cal &lt;v|c&gt; reset). </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Обработчик команды "cal". Управление процессом калибровки АЦП. </p>
+<p>Поддерживает режимы:</p><ul>
+<li><span class="tt">cal &lt;v|c&gt; &lt;float&gt;</span> : Добавление экспериментальной точки (измеренное vs эталонное)</li>
+<li><span class="tt">cal &lt;v|c&gt; start</span> : Выполнение расчета МНК и сохранение параметров в Flash</li>
+<li><span class="tt">cal &lt;v|c&gt; reset</span> : Сброс калибровочных коэффициентов к дефолтным (k=1, b=0) <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка параметров. Первым токеном идет "v" или "c", вторым — "start", "reset" или число. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка параметров. </td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -266,6 +273,35 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ade3b706b842671f26fca1b902d142d45" name="ade3b706b842671f26fca1b902d142d45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade3b706b842671f26fca1b902d142d45">&#9670;&#160;</a></span>do_pi_change()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void do_pi_change </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик команды "pi". Настройка и сохранение коэффициентов PI-регулятора. </p>
+<p>Форматы команды:</p><ul>
+<li><span class="tt">pi &lt;v|c&gt; &lt;kp|ki|kd&gt; &lt;value&gt;</span> : Оперативное изменение коэффициента</li>
+<li><span class="tt">pi &lt;v|c&gt; save</span> : Сохранение настроек в Flash <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка параметров. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
+</div>
+</div>
 <a id="a969cc88f8457c08853eb84740f3e093b" name="a969cc88f8457c08853eb84740f3e093b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a969cc88f8457c08853eb84740f3e093b">&#9670;&#160;</a></span>do_print_coefficients()</h2>
 
@@ -281,10 +317,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Обработчик команды "coeff". Вывод текущих калибровочных коэффициентов. </p>
-<p>Форматирует коэффициенты и выводит их . </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Обработчик команды "coeff". Вывод текущих калибровочных и ПИД-коэффициентов. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка выбора канала: "v" — напряжение, "c" — ток. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Выбор канала: "v" (калибровка напряжения), "c" (калибровка тока), "piv" (ПИ напряжения) или "pic" (ПИ тока). </td></tr>
   </table>
   </dd>
 </dl>
@@ -306,13 +342,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Обработчик команды "set". Ручная установка значения цифрового потенциометра/напряжения/тока. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Обработчик команды "set". Ручная установка целевых параметров. </p>
+<p>Поддерживает три режима:</p><ul>
+<li><span class="tt">set v &lt;float&gt;</span> : Установка целевого напряжения</li>
+<li><span class="tt">set c &lt;float&gt;</span> : Установка целевого тока</li>
+<li><span class="tt">set r &lt;int&gt;</span> : Ручная запись кода в цифровой потенциометр (0–255) <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка параметров. Первым токеном идет "r", "v", "c", вторым — число. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>Строка параметров с токенами типа и значения. </td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -385,16 +426,20 @@ Variables</h2></td></tr>
 <div class="line">    {<span class="stringliteral">&quot;led&quot;</span>,   <a class="code hl_function" href="#a09c955a2d23fa05bff72eecd9a7d0909">do_led</a>},</div>
 <div class="line">    {<span class="stringliteral">&quot;set&quot;</span>,   <a class="code hl_function" href="#af314541cfc6523fa6dccc9f4df10d4c8">do_set</a>},</div>
 <div class="line">    {<span class="stringliteral">&quot;coeff&quot;</span>, <a class="code hl_function" href="#a969cc88f8457c08853eb84740f3e093b">do_print_coefficients</a>},</div>
-<div class="line">    {<span class="stringliteral">&quot;cal&quot;</span>,   <a class="code hl_function" href="#aad083faf2b0af2c96fdef9fa1d6e781a">do_calibration</a>}</div>
+<div class="line">    {<span class="stringliteral">&quot;cal&quot;</span>,   <a class="code hl_function" href="#aad083faf2b0af2c96fdef9fa1d6e781a">do_calibration</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;pi&quot;</span>,    <a class="code hl_function" href="#ade3b706b842671f26fca1b902d142d45">do_pi_change</a>}</div>
 <div class="line">}</div>
 <div class="ttc" id="acli_8c_html_a09c955a2d23fa05bff72eecd9a7d0909"><div class="ttname"><a href="#a09c955a2d23fa05bff72eecd9a7d0909">do_led</a></div><div class="ttdeci">void do_led(char *args)</div><div class="ttdoc">Обработчик команды &quot;led&quot;. Прямое управление отладочным светодиодом.</div><div class="ttdef"><b>Definition</b> cli.c:120</div></div>
 <div class="ttc" id="acli_8c_html_a60c584db73dfb639c17bb525ed76577a"><div class="ttname"><a href="#a60c584db73dfb639c17bb525ed76577a">do_get</a></div><div class="ttdeci">void do_get(char *args)</div><div class="ttdoc">Обработчик команды &quot;get&quot;. Запрос на однократную отправку состояния.</div><div class="ttdef"><b>Definition</b> cli.c:101</div></div>
 <div class="ttc" id="acli_8c_html_a78ca14048722c671e7f900c17ebf741f"><div class="ttname"><a href="#a78ca14048722c671e7f900c17ebf741f">do_debug</a></div><div class="ttdeci">void do_debug(char *args)</div><div class="ttdoc">Обработчик команды &quot;debug&quot;. Управление периодической отправкой данных телеметрии.</div><div class="ttdef"><b>Definition</b> cli.c:70</div></div>
-<div class="ttc" id="acli_8c_html_a969cc88f8457c08853eb84740f3e093b"><div class="ttname"><a href="#a969cc88f8457c08853eb84740f3e093b">do_print_coefficients</a></div><div class="ttdeci">void do_print_coefficients(char *args)</div><div class="ttdoc">Обработчик команды &quot;coeff&quot;. Вывод текущих калибровочных коэффициентов.</div><div class="ttdef"><b>Definition</b> cli.c:194</div></div>
-<div class="ttc" id="acli_8c_html_aad083faf2b0af2c96fdef9fa1d6e781a"><div class="ttname"><a href="#aad083faf2b0af2c96fdef9fa1d6e781a">do_calibration</a></div><div class="ttdeci">void do_calibration(char *args)</div><div class="ttdoc">Обработчик команды &quot;cal&quot;. Комплексное управление процессом калибровки.</div><div class="ttdef"><b>Definition</b> cli.c:225</div></div>
+<div class="ttc" id="acli_8c_html_a969cc88f8457c08853eb84740f3e093b"><div class="ttname"><a href="#a969cc88f8457c08853eb84740f3e093b">do_print_coefficients</a></div><div class="ttdeci">void do_print_coefficients(char *args)</div><div class="ttdoc">Обработчик команды &quot;coeff&quot;. Вывод текущих калибровочных и ПИД-коэффициентов.</div><div class="ttdef"><b>Definition</b> cli.c:198</div></div>
+<div class="ttc" id="acli_8c_html_aad083faf2b0af2c96fdef9fa1d6e781a"><div class="ttname"><a href="#aad083faf2b0af2c96fdef9fa1d6e781a">do_calibration</a></div><div class="ttdeci">void do_calibration(char *args)</div><div class="ttdoc">Обработчик команды &quot;cal&quot;. Управление процессом калибровки АЦП.</div><div class="ttdef"><b>Definition</b> cli.c:255</div></div>
 <div class="ttc" id="acli_8c_html_ad4118ed092662e0e90456916f594d770"><div class="ttname"><a href="#ad4118ed092662e0e90456916f594d770">do_stop</a></div><div class="ttdeci">void do_stop(char *args)</div><div class="ttdoc">Обработчик команды &quot;stop&quot;. Остановка автоматического регулирования.</div><div class="ttdef"><b>Definition</b> cli.c:109</div></div>
-<div class="ttc" id="acli_8c_html_af314541cfc6523fa6dccc9f4df10d4c8"><div class="ttname"><a href="#af314541cfc6523fa6dccc9f4df10d4c8">do_set</a></div><div class="ttdeci">void do_set(char *args)</div><div class="ttdoc">Обработчик команды &quot;set&quot;. Ручная установка значения цифрового потенциометра/напряжения/тока.</div><div class="ttdef"><b>Definition</b> cli.c:141</div></div>
+<div class="ttc" id="acli_8c_html_ade3b706b842671f26fca1b902d142d45"><div class="ttname"><a href="#ade3b706b842671f26fca1b902d142d45">do_pi_change</a></div><div class="ttdeci">void do_pi_change(char *args)</div><div class="ttdoc">Обработчик команды &quot;pi&quot;. Настройка и сохранение коэффициентов PI-регулятора.</div><div class="ttdef"><b>Definition</b> cli.c:375</div></div>
+<div class="ttc" id="acli_8c_html_af314541cfc6523fa6dccc9f4df10d4c8"><div class="ttname"><a href="#af314541cfc6523fa6dccc9f4df10d4c8">do_set</a></div><div class="ttdeci">void do_set(char *args)</div><div class="ttdoc">Обработчик команды &quot;set&quot;. Ручная установка целевых параметров.</div><div class="ttdef"><b>Definition</b> cli.c:145</div></div>
 </div><!-- fragment -->
+<p>Таблица сопоставления текстовых команд и функций-обработчиков CLI. </p>
+
 </div>
 </div>
 </div><!-- contents -->
